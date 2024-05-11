@@ -1,18 +1,18 @@
 ---
-
+import { ViewTransitions } from "astro:transitions";
 ---
 
-<header class="bg-white/40 sticky backdrop-blur-lg shadow-xl shadow-black/10 top-0 w-full z-10">
-  <nav class="flex flex-row justify-between items-center">
+<header transition:animate="initial" class="bg-blue-950/40 sticky backdrop-blur-md shadow-xl shadow-black/30 top-0 w-full z-10">
+  <nav transition:animate="initial" class="flex flex-row justify-between items-center py-1">
     <!--Logo dentro de un a href para que cuando sea presionado, se pueda volver a la página principal -->
-    <a class="" href="/">
-        <img src="/logo.jpeg" alt="Logo de Energy and water" class="md:size-9 size-8"/>
+    <a class="px-2" href="/">
+        <img src="/logo.jpeg" alt="Logo de Energy and water" class="md:size-10 size-8 rounded-full"/>
     </a>
-    <div class="flex flex-row">
-        <a class="hover:bg-accent-color/90 hover:text-font-accent hover:scale-105 transition p-2" href="/">Inicio</a>
-        <a class="hover:bg-accent-color/90 hover:text-font-accent hover:scale-105 transition p-2" href="/history.astro">Historia</a>
-        <a class="hover:bg-accent-color/90 hover:text-font-accent hover:scale-105 transition p-2" href="/equip.astro">Equipo</a>
-        <a class="hover:bg-accent-color/90 hover:text-font-accent hover:scale-105 transition p-2" href="/faq.astro">Preguntas frecuentes </a>
+    <div class="flex flex-row px-2">
+        <a class="hover:bg-red-500 text-white hover:text-white hover:scale-105 transition p-2 rounded-md" href="/">Inicio</a>
+        <a class="hover:bg-red-500 text-white hover:text-white hover:scale-105 transition p-2 rounded-md" href="/history.astro">Historia</a>
+        <a class="hover:bg-red-500 text-white hover:text-white hover:scale-105 transition p-2 rounded-md" href="/equip.astro">Equipo</a>
+        <a class="hover:bg-red-500 text-white hover:text-white hover:scale-105 transition p-2 rounded-md" href="/faq.astro">Preguntas frecuentes </a>
     </div>
   </nav>
 </header>

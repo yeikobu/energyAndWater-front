@@ -4,15 +4,32 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 ---
 
-<Layout title="">
-	<main>
+<Layout title="Inicio">
+	<main class="space-y-24 pt-24 ">
+		<!--Sección de la imagen principal junto con los textos -->
+		<section class="flex flex-col justify-center items-center">
+			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
+			<div class="text-center pt-4">
+				<h1 class="text-white text-2xl sm:text-3xl font-extrabold shadow-primary">Mantenimiento para edificios</h1>
+				<h3 class="text-gray-200 text-lg sm:text-xl font-bold">CLIMATIZACIÓN, ELECTRICIDAD Y OBRAS MENORES DE CONSTRUCCIÓN.</h3>
+			</div>
+		</section>
 
+		<section class="flex flex-col items-center pt-16">
+			<h2 class="text-lg text-red-600 font-bold">Mantenimiento</h2>
+			<p class="text-gray-300">Conjunto de operaciones y cuidados necesarios para que tus instalaciones continúen funcionando correctamente.</p>
+		</section>
 	</main>
 </Layout>
 
 <style>
 	* {
 		font-family: "Onest Variable", system-ui, sans-serif;
+	}
+
+	img { 
+		width: 25%;
+		border-radius: 100%;
 	}
 	/*
 	.astro-a {
