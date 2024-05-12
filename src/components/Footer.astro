@@ -1,0 +1,35 @@
+---
+import InstagramIcon from "../../public/icons/InstagramIcon.astro"
+import XIcon from "../../public/icons/XIcon.astro"
+import SocialNetworkButton from "../components/SocialNetworkButton.astro"
+
+const socialNetworks = [
+    {
+        name: 'Instagram',
+        icon: InstagramIcon,
+        link: 'https://instagram.com'
+    },
+    {
+        name: 'X',
+        icon: XIcon,
+        link: 'https://x.com'
+    }
+]
+---
+<footer class="flex flex-col items-center space-y-4 bg-slate-950 py-20 mt-16">
+    <div class="flex flex-col items-center">
+        <p class="text-gray-300 text-sm px-4">Siguenos en:</p>
+        <div class="space-x-2">
+            {socialNetworks.map((network) => (
+                <SocialNetworkButton href={network.link}>
+                    <network.icon class="size-4"/>
+                </SocialNetworkButton>
+            ))}
+        </div>
+    </div>
+    <div class="flex flex-row items-center justify-center">
+        <p class="text-white px-4">
+            <a href="mailto:Contacto@energyandwater.cl" class="hover:text-red-600">Contacto@energyandwater.cl</a>  |   Manquehue Sur 520, oficina 205, Las Condes   |   +56232569798
+        </p>
+    </div>
+</footer>
