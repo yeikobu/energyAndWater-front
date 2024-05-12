@@ -2,17 +2,18 @@
 import { ViewTransitions } from "astro:transitions";
 ---
 
-<header transition:animate="initial" class="bg-slate-900/40 sticky backdrop-blur-md shadow-md shadow-black top-0 w-full z-2">
+<header transition:animate="initial" class="bg-slate-900/40 sticky backdrop-blur-md shadow-md shadow-black top-0 w-full z-10">
   <nav transition:animate="initial" class="flex flex-row justify-between items-center py-2 text-center">
     <!--Logo dentro de un a href para que cuando sea presionado, se pueda volver a la página principal -->
     <a class="px-2" href="/">
         <img src="/logo.jpeg" alt="Logo de Energy and water" class="md:size-10 size-8 rounded-full"/>
     </a>
+    <!--Enlaces -->
     <div class="flex flex-row px-4">
-        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-110 text-extrabold transition p-2 rounded" href="/">Inicio</a>
-        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-110 text-extrabold transition p-2 rounded" href="/history.astro">Historia</a>
-        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-110 text-extrabold transition p-2 rounded" href="/equip.astro">Equipo</a>
-        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-110 text-extrabold transition p-2 rounded" href="/faq.astro">Preguntas frecuentes </a>
+        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-105 text-extrabold transition p-2 rounded" href="/">Inicio</a>
+        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-105 text-extrabold transition p-2 rounded" href="/history.astro">Historia</a>
+        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-105 text-extrabold transition p-2 rounded" href="/equip.astro">Equipo</a>
+        <a class="hover:bg-red-600/50 text-stone-200 hover:text-white hover:scale-105 text-extrabold transition p-2 rounded" href="/faq.astro">Preguntas frecuentes </a>
     </div>
   </nav>
 </header>
