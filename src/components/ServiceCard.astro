@@ -1,11 +1,11 @@
 ---
 const { title, description, imgURL } = Astro.props;
 ---
-<div class="md:w-[90%] flex md:flex-row flex-col p-4 items-center sm:items-start">
-    <img src=`${imgURL}` alt=`Imagen del servicio ${title}` class="w-40 h-72 object-fill">
-    <div class="w-full ml-2 sm:space-y-4  text-center sm:text-start">
+<div class="flex xl:flex-row flex-col m-8 items-center sm:items-start">
+    <img src=`${imgURL}` alt=`Imagen del servicio ${title}` class="w-40 h-72 object-contain">
+    <div class="w-full ml-2 sm:space-y-4 pl-1 text-center sm:text-start">
         <h2 class="text-stone-200 text-lg font-bold">{title}</h2>
-        <p class="text-stone-400">{description}</p>
-        <input type="button" value="Cotizar" class="bg-red-600/40 text-stone-300 rounded-full inline-flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs md:text-base transition  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
+        <p class="text-stone-400 pr-4 text-sm">{description}</p>
+        <input type="button" value="Cotizar" class="bg-red-600/40 shadow-md shadow-black text-stone-300 mt-4 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
     </div>
 </div>
