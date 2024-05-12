@@ -1,11 +1,27 @@
 ---
 import "@fontsource-variable/onest";
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import MainteinanceCard from '../components/MainteinanceCard.astro';
+
+
+const mainteinances = [
+	{
+		title: "Mantenimiento",
+		description: "Conjunto de operaciones y cuidados necesarios para que tus instalaciones continúen funcionando correctamente."
+	}, 
+	{
+		title: "Mantenimiento preventivo",
+		description: "Ayuda a prolongar la vida útil de tus activos y aumenta la productividad, a través de una revisión."
+	}, 
+	{
+		title: "Mantenimiento correctivo",
+		description: "Corrige problemas o daños en las instalaciones o equipos."
+	}
+] 
 ---
 
 <Layout title="Inicio">
-	<main class="space-y-24 pt-24 ">
+	<main class="space-y-24 pt-24 px-8">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
 			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
@@ -15,9 +31,13 @@ import Card from '../components/Card.astro';
 			</div>
 		</section>
 
-		<section class="flex flex-col items-center pt-16">
-			<h2 class="text-lg text-red-600 font-bold">Mantenimiento</h2>
-			<p class="text-gray-300">Conjunto de operaciones y cuidados necesarios para que tus instalaciones continúen funcionando correctamente.</p>
+		<section class="flex flex-row space-x-4 text-center">
+			{
+				//Iterando el arreglo de mainteinances para transformar cada uno de sus objetos en una MaintainanceCard
+				mainteinances.map(({title, description}) => (
+					<MainteinanceCard title={title} description={description}/>
+				))
+			}
 		</section>
 	</main>
 </Layout>
@@ -31,52 +51,4 @@ import Card from '../components/Card.astro';
 		width: 25%;
 		border-radius: 100%;
 	}
-	/*
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	} */
 </style>
