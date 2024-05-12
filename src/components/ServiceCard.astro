@@ -1,0 +1,10 @@
+---
+const { title, description, imgURL } = Astro.props;
+---
+<div class="md:w-[90%] flex md:flex-row flex-col p-4 items-center sm:items-start">
+    <img src=`${imgURL}` alt=`Imagen del servicio ${title}` class="w-40 h-72 object-fill">
+    <div class="w-full ml-2 sm:space-y-4  text-center sm:text-start">
+        <h2 class="text-red-600 text-lg font-bold">{title}</h2>
+        <p class="text-gray-300">{description}</p>
+    </div>
+</div>

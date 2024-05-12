@@ -1,8 +1,12 @@
 ---
-import { getServices } from "../api/services"
 import "@fontsource-variable/onest"
+
+//Impotando la función que trae los servicios desde la API
+import { getServices } from "../api/services"
+
 import Layout from '../layouts/Layout.astro'
 import MainteinanceCard from '../components/MainteinanceCard.astro'
+import ServiceCard from "../components/ServiceCard.astro"
 
 let services = []
 //Array de objetos que contienen la información que se le pasará a cada MaintainceCard
@@ -25,17 +29,16 @@ const mainteinances = [
 async function loadServices() {
   try {
     services = await getServices('http://localhost/energyandwater/controller/ServicesController.php');
-	console.log(services)
   } catch (error) {
-    console.error('Error al obtener los servicios:', error);
+    console.error('Error al obtener los servicios:', error)
   } 
 }
 
-await loadServices();
+await loadServices()
 ---
 
 <Layout title="Inicio - Energy & Water" desciption="Energy & Water - Mantenimiento para edificios">
-	<main class="space-y-24 pt-24 px-8">
+	<main class="space-y-28 pt-24 px-8">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
 			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
@@ -46,7 +49,7 @@ await loadServices();
 		</section>
 
 		<!--Sección de mantenimiento -->
-		<section class="flex flex-row space-x-4 text-center">
+		<section class="flex sm:flex-row flex-col space-x-4 text-center">
 			{//Iterando el arreglo de mainteinances para transformar cada uno de sus objetos en una MaintainanceCard
 				mainteinances.map((mainteinance) => (
 					<MainteinanceCard title={mainteinance.title} description={mainteinance.description}/>
@@ -54,13 +57,13 @@ await loadServices();
 			}
 		</section>
 		
-		<section>
-			{services.map((service) => (
-			  <div>
-				<h2>{service.vch_service_name}</h2>
-				<p>{service.vch_description}</p>
-			  </div>
-			))}
+		<section class="flex flex-col space-y-4 items-center">
+			<h2 class="text-white text-2xl sm:text-3xl font-extrabold">Nuestros Servicios</h2>
+			<div class="sm:grid sm:grid-cols-2 flex flex-col items-center">
+				{services.map((service) => (
+					<ServiceCard title={service.vch_service_name} description={service.vch_description} imgURL={service.vch_url_img} />
+				))}
+			</div>
 		</section>
 		  
 	</main>
