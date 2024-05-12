@@ -1,9 +1,11 @@
 ---
-import "@fontsource-variable/onest";
-import Layout from '../layouts/Layout.astro';
-import MainteinanceCard from '../components/MainteinanceCard.astro';
+import { getServices } from "../api/services"
+import "@fontsource-variable/onest"
+import Layout from '../layouts/Layout.astro'
+import MainteinanceCard from '../components/MainteinanceCard.astro'
 
-
+let services = []
+//Array de objetos que contienen la información que se le pasará a cada MaintainceCard
 const mainteinances = [
 	{
 		title: "Mantenimiento",
@@ -18,9 +20,21 @@ const mainteinances = [
 		description: "Corrige problemas o daños en las instalaciones o equipos."
 	}
 ] 
+
+//Obteniendo los servicios de la API
+async function loadServices() {
+  try {
+    services = await getServices('http://localhost/energyandwater/controller/ServicesController.php');
+	console.log(services)
+  } catch (error) {
+    console.error('Error al obtener los servicios:', error);
+  } 
+}
+
+await loadServices();
 ---
 
-<Layout title="Inicio">
+<Layout title="Inicio - Energy & Water" desciption="Energy & Water - Mantenimiento para edificios">
 	<main class="space-y-24 pt-24 px-8">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
@@ -31,14 +45,24 @@ const mainteinances = [
 			</div>
 		</section>
 
+		<!--Sección de mantenimiento -->
 		<section class="flex flex-row space-x-4 text-center">
-			{
-				//Iterando el arreglo de mainteinances para transformar cada uno de sus objetos en una MaintainanceCard
-				mainteinances.map(({title, description}) => (
-					<MainteinanceCard title={title} description={description}/>
+			{//Iterando el arreglo de mainteinances para transformar cada uno de sus objetos en una MaintainanceCard
+				mainteinances.map((mainteinance) => (
+					<MainteinanceCard title={mainteinance.title} description={mainteinance.description}/>
 				))
 			}
 		</section>
+		
+		<section>
+			{services.map((service) => (
+			  <div>
+				<h2>{service.vch_service_name}</h2>
+				<p>{service.vch_description}</p>
+			  </div>
+			))}
+		</section>
+		  
 	</main>
 </Layout>
 
