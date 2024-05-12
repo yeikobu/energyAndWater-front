@@ -1,9 +1,11 @@
 ---
+//Importando la fuente 
 import "@fontsource-variable/onest"
 
 //Impotando la función que trae los servicios desde la API
 import { getServices } from "../api/services"
 
+//Componentes que serán usados dentro de este documento
 import Layout from '../layouts/Layout.astro'
 import MainteinanceCard from '../components/MainteinanceCard.astro'
 import ServiceCard from "../components/ServiceCard.astro"
@@ -25,12 +27,14 @@ const mainteinances = [
 	}
 ] 
 
-//Obteniendo los servicios de la API
+/**
+*	Obteniendo los servicios de la API y guardandolos en el array de servicios para luego mostrarlos
+*/
 async function loadServices() {
   try {
     services = await getServices('http://localhost/energyandwater/controller/ServicesController.php');
   } catch (error) {
-    console.error('Error al obtener los servicios:', error)
+    console.error(error)
   } 
 }
 
@@ -57,11 +61,13 @@ await loadServices()
 			}
 		</section>
 		
+		<!--Sección de los servicios obtenidos desde la API -->
 		<section class="flex flex-col space-y-4 items-center pt-10">
-			<h2 class="text-white text-2xl sm:text-3xl font-extrabold">Nuestros Servicios</h2>
+			<h2 class="text-white text-2xl sm:text-3xl font-extrabold"><span class="bg-gradient-to-r from-slate-700 via-white to-slate-700 text-transparent bg-clip-text">Nuestros Servicios</span></h2>
 			<div class="sm:grid sm:grid-cols-2 flex flex-col items-center">
-				{services.map((service) => (
-					<ServiceCard title={service.vch_service_name} description={service.vch_description} imgURL={service.vch_url_img} />
+				{//Iterando los el arreglo de servicios para mostrar cada uno a través de una ServiceCard
+					services.map((service) => (
+						<ServiceCard title={service.vch_service_name} description={service.vch_description} imgURL={service.vch_url_img} />
 				))}
 			</div>
 		</section>
