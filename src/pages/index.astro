@@ -7,10 +7,16 @@ import { getServices } from "../api/services"
 
 //Componentes que serán usados dentro de este documento
 import Layout from '../layouts/Layout.astro'
+import SectionTitle from "../components/SectionTitle.astro"
 import MainteinanceCard from '../components/MainteinanceCard.astro'
 import ServiceCard from "../components/ServiceCard.astro"
 
+//Importando SVG, pero en formato astro para poder controlar sus propiedades mediante tailwind
+import WhatsApp from "../../public/icons/WhatsApp.astro"
+
+//Este array luego contendrá los servicios
 let services = []
+
 //Array de objetos que contienen la información que se le pasará a cada MaintainceCard
 const mainteinances = [
 	{
@@ -26,6 +32,7 @@ const mainteinances = [
 		description: "Corrige problemas o daños en las instalaciones o equipos."
 	}
 ] 
+
 
 /**
 *	Obteniendo los servicios de la API y guardandolos en el array de servicios para luego mostrarlos
@@ -63,12 +70,26 @@ await loadServices()
 		
 		<!--Sección de los servicios obtenidos desde la API -->
 		<section class="flex flex-col space-y-4 items-center pt-10">
-			<h2 class="text-white text-2xl sm:text-3xl font-extrabold"><span class="bg-gradient-to-r from-slate-700 via-white to-slate-700 text-transparent bg-clip-text">Nuestros Servicios</span></h2>
+			<SectionTitle title="Nuestros Servicios"/>
 			<div class="sm:grid sm:grid-cols-2 flex flex-col items-center w-[70%]">
 				{//Iterando los el arreglo de servicios para mostrar cada uno a través de una ServiceCard
 					services.map((service) => (
 						<ServiceCard title={service.vch_service_name} description={service.vch_description} imgURL={service.vch_url_img}/>
 				))}
+			</div>
+		</section>
+
+		<section class="flex flex-col space-y-4 items-center pt-10">
+			<SectionTitle title="¿Tienes alguna pregunta o deseas cotizar nuestros servicios?"/>
+			<h2 class="text-stone-200 text-lg font-bold">Puedes contactarnos a través de:</h2>
+			<div class="flex flex-col items-center">
+				<WhatsApp class="size-10 hover:scale-110 transition cursor-pointer"/>
+				<label for="WhatsApp" class="text-stone-300">WhatsApp</label>
+			</div>
+			<label for="o" class="text-stone-300">O</label>
+			<div class="flex flex-col items-center space-y-1">
+				<p class="text-stone-300">Nuestro formulario de contacto</p>
+				<button type="button" class="bg-red-600/40 backdrop-blur-sm shadow-md shadow-black text-stone-300 mt-4 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">Mostrar formulario</button>
 			</div>
 		</section>
 		  
