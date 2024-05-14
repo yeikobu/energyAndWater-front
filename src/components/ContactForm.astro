@@ -1,9 +1,28 @@
 ---
 //Iconos
-import CrossIcon from "../../public/icons/CrossIcon.astro";
+import CrossIcon from "../../public/icons/CrossIcon.astro"
 
 //Componentes
-import SectionTitle from "./SectionTitle.astro";
+import SectionTitle from "./SectionTitle.astro"
+
+import { getServices } from "../api/services"
+
+
+//Este array almacena los servicios a renderizar en el html
+let services = []
+
+/**
+*	Obteniendo los servicios de la API y guardándolos en el array de services para luego mostrarlos
+*/
+async function loadServices() {
+  try {
+    services = await getServices('http://localhost/energyandwater/controller/ServicesController.php');
+  } catch (error) {
+    console.error(error)
+  } 
+}
+
+await loadServices()
 ---
 
 <section id="formSectionContainer" class="bg-slate-950/80 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-md">
@@ -15,7 +34,9 @@ import SectionTitle from "./SectionTitle.astro";
         <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full">
         <SectionTitle title="Contáctanos"/>
     
+        <!-- Inicio del formulario como tal -->
         <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
+            <!--Campo del nombre -->
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Nombre completo</label>
                 <input type="text" id="textInputName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
@@ -25,11 +46,11 @@ import SectionTitle from "./SectionTitle.astro";
             <!-- select con cada uno de los servicios a seleccionar-->
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Servicio a consultar</label>
-                <select name="Servicios" id="services" class="services rounded-lg p-2"> 
-                    <option value="Consultoría digital">Consultoría digital</option>
-                    <option value="Soluciones multiexperiencia">Soluciones multiexperiencia</option>
-                    <option value="Evolución de ecosistemas">Evolución de ecosistemas</option>
-                    <option value="Soluciones Low-Code">Soluciones Low-Code</option>
+                <select name="Servicios" id="services" class="services rounded-lg p-2">
+                    <!--Cargando los servicios desde la API-->
+                    {services.map((service) => (
+                        <option value={service.vch_service_name}>{service.vch_service_name}</option>
+                    ))}
                 </select>
             </div>
     
