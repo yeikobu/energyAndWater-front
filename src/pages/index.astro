@@ -48,7 +48,7 @@ await loadServices()
 ---
 
 <Layout title="Inicio - Energy & Water" desciption="Energy & Water - Mantenimiento para edificios">
-	<main class="space-y-28 pt-24 px-8">
+	<main transition:animate="slide" class="space-y-28 pt-24 px-8 z-0">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
 			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
@@ -90,10 +90,9 @@ await loadServices()
 				<label for="WhatsApp" class="text-stone-300">WhatsApp</label>
 			</div>
 			<label for="o" class="text-stone-300">O</label>
-			<div class="flex flex-col items-center space-y-1">
-				<p class="text-stone-300">Nuestro formulario de contacto</p>
-				<button type="button" class="bg-red-600/40 backdrop-blur-sm shadow-md shadow-black text-stone-300 mt-4 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">Mostrar formulario</button>
-			</div>
+			<a transition:animate="initial" href="/contactForm">
+				<button type="button" class="bg-red-600/40 backdrop-blur-sm shadow-md shadow-black text-stone-300 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">Nuestro formulario de contacto</button>
+			</a>
 		</section>
 	</main>
 </Layout>
