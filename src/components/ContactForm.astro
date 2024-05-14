@@ -1,6 +1,7 @@
 ---
 //Iconos
 import CrossIcon from "../../public/icons/CrossIcon.astro"
+import CheckIcon from "../../public/icons/CheckIcon.astro"
 
 //Componentes
 import SectionTitle from "./SectionTitle.astro"
@@ -69,8 +70,11 @@ await loadServices()
             <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
         </form>
     </div>
-    <div id="formSubmitted" class=""> 
-        
+    <div id="formSubmitted" class="transition hidden bg-slate-950/100 shadow-lg shadow-black rounded-xl -translate-y-96 mx-4 content-center"> 
+        <div class="flex flex-col items-center py-4">
+            <h2 class="text-lg text-white">Mensaje enviado satisfactoriamente</h2>
+            <CheckIcon class="text-green-700 size-11"/>
+        </div>
     </div>
 </section>
 
@@ -144,9 +148,13 @@ await loadServices()
         console.log('Email: ', email.value)
         console.log('Servicio seleccionado: ', services.value)
         console.log('Mensaje:', message.value)
+        setTimeout(() => {
+            handleFormOpen()
+            name.value = ""
+            email.value = ""
+            message.value = ""
+        }, 500)
     }
-
-    button.addEventListener('click', sendForm)
 
     /**
 	*	Función que se encarga de ejecutar el cambio de estado para poder cerrar el formulario
@@ -174,4 +182,7 @@ await loadServices()
 
     //El botón de cerrar cierra el formulario
     closeButton.addEventListener('click' , handleFormOpen)
+
+    //Botón para enviar el formulario
+    button.addEventListener('click', sendForm)
 </script>
