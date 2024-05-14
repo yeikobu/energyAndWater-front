@@ -102,17 +102,20 @@ await loadServices()
 </Layout>
 
 <script>
+	//Atomo(estado) que permitirá manejar el estado para mostrar el formulario. Esto es posible gracias a la librería de Nano Store
 	import { isContctUsFormOpen } from '../store.js'
 
+	//Referencia al DOM
 	const showFormButton = document.getElementById('showFormButton')
 
-	// Cambia el stado a true 
+	/**
+	*	Función que se encargará de ejecutar el cambio de estado para poder abrir el formulario
+	*/
 	const handleShowForm = () =>  {
-		console.log("Hola")
 		isContctUsFormOpen.set(true)
-		console.log(isContctUsFormOpen.get)
 	}
 
+	//Ejecuta la acción de abrir el formulario
 	showFormButton.addEventListener('click', handleShowForm)
 </script>
 

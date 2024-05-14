@@ -58,12 +58,14 @@ import SectionTitle from "./SectionTitle.astro";
     const fullForm = document.getElementById('fullFrom')
     const closeButton = document.getElementById('closeButton')
 
-    //Funciónnque cambia el estado a falso para poder cerrar el formulario
+    /**
+	*	Función que se encargará de ejecutar el cambio de estado para poder cerrar el formulario
+	*/
     const handleFormOpen = () => { 
         isContctUsFormOpen.set(false)
     }
 
-    // Escucha los cambios en el store y muestra/oculta el diálogo en consecuencia
+    // Escucha los cambios en el átomo(estado) del store y muestra/oculta el diálogo en consecuencia
     isContctUsFormOpen.subscribe(open => {
         if (open) {
             formSectionContainer.classList.remove('hidden')
