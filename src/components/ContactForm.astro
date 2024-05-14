@@ -1,0 +1,61 @@
+---
+//Iconos
+import CrossIcon from "../../public/icons/CrossIcon.astro";
+
+//Componentes
+import SectionTitle from "./SectionTitle.astro";
+---
+
+<section id="formSectionContainer" class="bg-slate-950/80 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-md">
+    <div id="fullFrom" class="bg-slate-950 transition-all translate-y-full flex flex-col items-center justify-center m-auto p-8 rounded-xl sm:w-[300px] md:w-[500px] lg:-w[800px]">
+        <CrossIcon class="text-stone-200 size-8 self-end rounded-lg transition-all hover:scale-110 hover:bg-red-600/40"/>
+        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full">
+        <SectionTitle title="Contáctanos"/>
+    
+        <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Nombre completo</label>
+                <input type="text" id="text-input-name" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
+                <label id="fullname-error-message" class="text-red-700">X El nombre no puede estar vacío</label>
+            </div>
+    
+            <!-- select con cada uno de los servicios a seleccionar-->
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Servicio a consultar</label>
+                <select name="Servicios" id="services" class="services rounded-lg p-2"> 
+                    <option value="Consultoría digital">Consultoría digital</option>
+                    <option value="Soluciones multiexperiencia">Soluciones multiexperiencia</option>
+                    <option value="Evolución de ecosistemas">Evolución de ecosistemas</option>
+                    <option value="Soluciones Low-Code">Soluciones Low-Code</option>
+                </select>
+            </div>
+    
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Mensaje</label>
+                <textarea name="" id="text-input-message" class="text-input-message rounded-lg p-2" cols="34" rows="5" placeholder="Ingrese su mensaje"></textarea>
+            </div>
+    
+            <input type="submit" id="button-send-form" value="Enviar" class="button-send-form bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
+        </form>
+    </div>
+</section>
+
+<script>
+    import { isContctUsFormOpen } from '../store.js';
+
+    const formSectionContainer = document.getElementById('formSectionContainer')
+    const fullForm = document.getElementById('fullFrom')
+
+    // Escucha los cambios en el store y muestra/oculta el diálogo en consecuencia
+    isContctUsFormOpen.subscribe(open => {
+        if (open) {
+            formSectionContainer.classList.remove('hidden')
+            setTimeout(() => {
+                // fullForm.classList.add('transition-all');
+                fullForm.classList.add('translate-y-0');
+            }, 10)
+        } else {
+            // document.getElementById('formSectionContainer').style.display = 'none';
+        }
+    })
+</script>

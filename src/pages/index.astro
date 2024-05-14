@@ -10,9 +10,11 @@ import Layout from '../layouts/Layout.astro'
 import SectionTitle from "../components/SectionTitle.astro"
 import MainteinanceCard from '../components/MainteinanceCard.astro'
 import ServiceCard from "../components/ServiceCard.astro"
+import ContactForm from "../components/ContactForm.astro"
 
 //Importando SVG, pero en formato astro para poder controlar sus propiedades mediante tailwind
 import WhatsApp from "../../public/icons/WhatsApp.astro"
+import ContactUSForm from "./contactUSForm.astro"
 
 //Array de objetos que contienen la información que se le pasará a cada MaintainceCard
 const mainteinances = [
@@ -48,7 +50,7 @@ await loadServices()
 ---
 
 <Layout title="Inicio - Energy & Water" desciption="Energy & Water - Mantenimiento para edificios">
-	<main transition:animate="slide" class="space-y-28 pt-24 px-8 z-0">
+	<main transition:animate="slide" class="flex flex-col items-center space-y-28 pt-24 px-8 z-0">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
 			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
@@ -90,12 +92,29 @@ await loadServices()
 				<label for="WhatsApp" class="text-stone-300">WhatsApp</label>
 			</div>
 			<label for="o" class="text-stone-300">O</label>
-			<a transition:animate="initial" href="/contactForm">
-				<button type="button" class="bg-red-600/40 backdrop-blur-sm shadow-md shadow-black text-stone-300 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">Nuestro formulario de contacto</button>
-			</a>
+			<!-- <a transition:animate="initial" href="/contactForm"> -->
+				<button type="button" id="showFormButton" class="bg-red-600/40 backdrop-blur-sm shadow-md shadow-black text-stone-300 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">Nuestro formulario de contacto</button>
+			<!-- </a> -->
 		</section>
 	</main>
+
+	<ContactForm />
 </Layout>
+
+<script>
+	import { isContctUsFormOpen } from '../store.js'
+
+	const showFormButton = document.getElementById('showFormButton')
+
+	// Cambia el stado a true 
+	const handleShowForm = () =>  {
+		console.log("Hola")
+		isContctUsFormOpen.set(true)
+		console.log(isContctUsFormOpen.get)
+	}
+
+	showFormButton.addEventListener('click', handleShowForm)
+</script>
 
 <style>
 	* {

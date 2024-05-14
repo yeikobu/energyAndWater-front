@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro"
+import SectionTitle from "../components/SectionTitle.astro"
+---
+<Layout>
+    <main transition:animate="none" class="flex flex-col items-center justify-center h-screen space-y-4 z-0" id="">
+        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full">
+        <SectionTitle title="Contáctanos"/>
+        <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4">
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Nombre completo</label>
+                <input type="text" id="text-input-name" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
+                <label id="fullname-error-message" class="text-red-700">X El nombre no puede estar vacío</label>
+            </div>
+
+            <!-- select con cada uno de los servicios a seleccionar-->
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Servicio a consultar</label>
+                <select name="Servicios" id="services" class="services rounded-lg p-2"> 
+                    <option value="Consultoría digital">Consultoría digital</option>
+                    <option value="Soluciones multiexperiencia">Soluciones multiexperiencia</option>
+                    <option value="Evolución de ecosistemas">Evolución de ecosistemas</option>
+                    <option value="Soluciones Low-Code">Soluciones Low-Code</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Mensaje</label>
+                <textarea name="" id="text-input-message" class="text-input-message rounded-lg p-2" cols="34" rows="5" placeholder="Ingrese su mensaje"></textarea>
+            </div>
+
+            <input type="submit" id="button-send-form" value="Enviar" class="button-send-form bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full border border-slate-800/80 inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
+        </form>
+    </main>
+</Layout>
+
+<script>
+//Chequear que los campos no estén vacíos
+const btnSendForm = document.querySelector('#button-send-form')
+checkFields()
+function checkFields() { 
+	const userName = document.querySelector('#text-input-name').value
+	const message = document.querySelector('#text-input-message').value
+    const fullNameError = document.querySelector('#fullname-error-message')
+
+    if (userName.value !== "") { 
+        fullNameError.style.opacity = 0
+    } else { 
+        fullNameError.style.opacity = 1
+    }
+
+    //Manejando el botón para mostrarlo solo si se cumple que los campos a rellenar no estén vacíos
+	if (userName !== "" && message !== "") { 
+		btnSendForm.style.opacity = 1
+		btnSendForm.disabled = false
+		btnSendForm.style.cursor = 'pointer'
+	} else { 
+        btnSendForm.style.opacity = 0
+		btnSendForm.disabled = true
+		btnSendForm.style.cursor = 'default'
+	}
+}
+
+document.querySelector('#text-input-name').addEventListener('input', checkFields)
+document.querySelector('#text-input-message').addEventListener('input', checkFields)
+
+</script>
+
+<style>
+#btnSenForm { 
+    opacity: 0;
+    cursor: default;
+}
+</style>
