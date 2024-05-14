@@ -39,8 +39,14 @@ await loadServices()
             <!--Campo del nombre -->
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Nombre completo</label>
-                <input type="text" id="textInputName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
-                <label id="fullnameErrorMessafe" class="text-red-700">X El nombre no puede estar vacío</label>
+                <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
+                <label id="nameError" class="text-red-700 text-sm">X El nombre no puede estar vacío</label>
+            </div>
+
+            <div class="flex flex-col">
+                <label class="text-stone-200 font-bold">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="rounded-lg p-2"> 
+                <label id="emailError" class="text-red-700 text-sm">X El correo electrónico no puede estar vacío</label>
             </div>
     
             <!-- select con cada uno de los servicios a seleccionar-->
@@ -56,11 +62,15 @@ await loadServices()
     
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Mensaje</label>
-                <textarea name="" id="text-input-message" class="text-input-message rounded-lg p-2" cols="34" rows="5" placeholder="Ingrese su mensaje"></textarea>
+                <textarea name="" id="message" class="text-input-message rounded-lg p-2" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
+                <label id="messageError" class="text-red-700 text-sm">El campo de mensaje no puede estar vacío</label>
             </div>
     
-            <input type="submit" id="button-send-form" value="Enviar" class="button-send-form bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
+            <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
         </form>
+    </div>
+    <div id="formSubmitted" class=""> 
+        
     </div>
 </section>
 
@@ -74,13 +84,72 @@ await loadServices()
     //Importamos el átomo (estado) que queremos manejar para poder controlar si se ve o no el formulario
     import { isContctUsFormOpen } from '../store.js';
 
-    //Referencias de los elementos del DOM
+    //Referencias de los elementos del DOM con relación a ocultar el formulario
     const formSectionContainer = document.getElementById('formSectionContainer')
     const fullForm = document.getElementById('fullFrom')
     const closeButton = document.getElementById('closeButton')
 
+    //Referencias de los elementos del DOM con relación a validar los campos del formulario
+    const name = document.getElementById('fullName')
+    const email = document.getElementById('email')
+    const services = document.getElementById('services')
+    const message = document.getElementById('message')
+    const button = document.getElementById('sendForm')
+
     /**
-	*	Función que se encargará de ejecutar el cambio de estado para poder cerrar el formulario
+	*	Función que se encarga de mostrar un mensaje de error si el campo de nombre está vacío
+	*/
+    const checkName = () => { 
+        if (name.value !== "") { 
+            document.getElementById('nameError').classList.add('hidden')
+        } else { 
+            document.getElementById('nameError').classList.remove('hidden')
+        }
+    }
+
+    const checkEmail = () => { 
+        if (email.value !== "") { 
+            document.getElementById('emailError').classList.add('hidden')
+        } else { 
+            document.getElementById('emailError').classList.remove('hidden')
+        }
+    }
+
+    const checkMessage = () => { 
+        if (message.value !== "") { 
+            document.getElementById('messageError').classList.add('hidden')
+        } else { 
+            document.getElementById('messageError').classList.remove('hidden')
+        }
+    }
+
+    const checkAllFields = () => { 
+        if (name.value !== "" && email.value !== "" && message.value !== "") { 
+            button.classList.remove('hidden')
+        } else { 
+            button.classList.add('hidden')
+        }
+    }
+
+     //Escucnando todos los eventos de tipo input en los campos para mostrar u ocultar los errores
+    name.addEventListener('input', checkName)
+    name.addEventListener('input', checkAllFields)
+    email.addEventListener('input', checkEmail)
+    email.addEventListener('input', checkAllFields)
+    message.addEventListener('input', checkMessage)
+    message.addEventListener('input', checkAllFields)
+
+    const sendForm = () => { 
+        console.log('Nombre: ', name.value)
+        console.log('Email: ', email.value)
+        console.log('Servicio seleccionado: ', services.value)
+        console.log('Mensaje:', message.value)
+    }
+
+    button.addEventListener('click', sendForm)
+
+    /**
+	*	Función que se encarga de ejecutar el cambio de estado para poder cerrar el formulario
 	*/
     const handleFormOpen = () => { 
         isContctUsFormOpen.set(false)
@@ -91,12 +160,12 @@ await loadServices()
         if (open) {
             formSectionContainer.classList.remove('hidden')
             setTimeout(() => {
-                fullForm.classList.remove('translate-y-full');
-                fullForm.classList.add('translate-y-0');
+                fullForm.classList.remove('translate-y-full')
+                fullForm.classList.add('translate-y-0')
             }, 1)
         } else {
-            fullForm.classList.remove('translate-y-0');
-            fullForm.classList.add('translate-y-full');
+            fullForm.classList.remove('translate-y-0')
+            fullForm.classList.add('translate-y-full')
             setTimeout(() => {
                 formSectionContainer.classList.add('hidden')
             }, 100)
