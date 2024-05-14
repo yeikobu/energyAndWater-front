@@ -8,6 +8,7 @@ import SectionTitle from "./SectionTitle.astro";
 
 <section id="formSectionContainer" class="bg-slate-950/80 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-md">
     <div id="fullFrom" class="bg-slate-950 transition-all ease-in-out duration-150 translate-y-full flex flex-col items-center justify-center m-auto p-8 rounded-xl sm:w-[300px] md:w-[500px] lg:-w[800px]">
+        <!--Botón de cierre -->
         <button id="closeButton" class="self-end rounded-lg transition-all p-1 hover:scale-110 hover:bg-red-600/40">
             <CrossIcon class="text-stone-200 size-8"/>
         </button>
@@ -17,8 +18,8 @@ import SectionTitle from "./SectionTitle.astro";
         <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Nombre completo</label>
-                <input type="text" id="text-input-name" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
-                <label id="fullname-error-message" class="text-red-700">X El nombre no puede estar vacío</label>
+                <input type="text" id="textInputName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
+                <label id="fullnameErrorMessafe" class="text-red-700">X El nombre no puede estar vacío</label>
             </div>
     
             <!-- select con cada uno de los servicios a seleccionar-->
@@ -42,13 +43,22 @@ import SectionTitle from "./SectionTitle.astro";
     </div>
 </section>
 
+<!-- 
+    Profe, no sé si usted ha usado Astro, pero aquí quiero explicarle que el script de abajo es porque Astro por defecto intenta usar el mínimo
+    JS posible del lado del cliente. Todo el JS del lado del servidor es el que está al inicio de documento entre los '---', y eso hace que los elementos no puedan ser modificados por el cliente.
+    Ahora, si queremos agregar que los elementos cambien en el cliente podemos usar las 'Islas' que es todo lo que está en <script> (También se podrían usar otros frameworks para agregar reactividad a esto,
+        como Preact, React, Vue, svelte, etc. Ya que Astro es agnóstico a la UI)
+-->
 <script>
+    //Importamos el átomo (estado) que queremos manejar para poder controlar si se ve o no el formulario
     import { isContctUsFormOpen } from '../store.js';
 
+    //Referencias de los elementos del DOM
     const formSectionContainer = document.getElementById('formSectionContainer')
     const fullForm = document.getElementById('fullFrom')
     const closeButton = document.getElementById('closeButton')
 
+    //Funciónnque cambia el estado a falso para poder cerrar el formulario
     const handleFormOpen = () => { 
         isContctUsFormOpen.set(false)
     }
@@ -70,5 +80,6 @@ import SectionTitle from "./SectionTitle.astro";
         }
     })
 
+    //El botón de cerrar cierra el formulario
     closeButton.addEventListener('click' , handleFormOpen)
 </script>
