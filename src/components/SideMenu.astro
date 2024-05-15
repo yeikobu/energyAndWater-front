@@ -9,17 +9,14 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
         <CrossIcon class="text-stone-200 size-6"/>
     </button>
     <nav class="flex flex-col gap-4">
-        <a href="/" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/" id="home" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
             Inicio
         </a>
-        <a href="/history.astro" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/history" id="history" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
             Historia
         </a>
-        <a href="/equip.astro" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/equip" id="equip" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
             Equipo
-        </a>
-        <a href="/faq.astro" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
-            Preguntas frecuentes
         </a>
     </nav>
 </div>
@@ -32,7 +29,10 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
     const crossButton = document.getElementById('crossButton')
     const bgBlack = document.getElementById('bgBlack')
     const fullSideMenu = document.getElementById('fullSideMenu')
-
+    const home = document.getElementById('home')
+    const history = document.getElementById('history')
+    const equip = document.getElementById('equip')
+    const services = document.getElementById('services')
     //Escucha el estado showNavMenu para mostrar u ocultar el menu lateral
     showNavMenu.subscribe(open => {
         if (open) { 
@@ -50,7 +50,6 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
     const hideSideMenu = () => { 
         showNavMenu.set(false)
     }
-
 
     crossButton.addEventListener('click', hideSideMenu)
 </script>
