@@ -104,7 +104,7 @@ await loadServices()
 	*	Función que se encarga de mostrar un mensaje de error si el campo de nombre está vacío
 	*/
     const checkName = () => { 
-        if (name.value !== "") { 
+        if ((name as HTMLInputElement).value !== "") { 
             document.getElementById('nameError').classList.add('hidden')
         } else { 
             document.getElementById('nameError').classList.remove('hidden')
@@ -112,7 +112,7 @@ await loadServices()
     }
 
     const checkEmail = () => { 
-        if (email.value !== "") { 
+        if ((email as HTMLInputElement).value !== "") { 
             document.getElementById('emailError').classList.add('hidden')
         } else { 
             document.getElementById('emailError').classList.remove('hidden')
@@ -120,7 +120,7 @@ await loadServices()
     }
 
     const checkMessage = () => { 
-        if (message.value !== "") { 
+        if ((message as HTMLInputElement).value !== "") { 
             document.getElementById('messageError').classList.add('hidden')
         } else { 
             document.getElementById('messageError').classList.remove('hidden')
@@ -128,7 +128,7 @@ await loadServices()
     }
 
     const checkAllFields = () => { 
-        if (name.value !== "" && email.value !== "" && message.value !== "") { 
+        if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "") { 
             button.classList.remove('hidden')
         } else { 
             button.classList.add('hidden')
@@ -144,15 +144,15 @@ await loadServices()
     message.addEventListener('input', checkAllFields)
 
     const sendForm = () => { 
-        console.log('Nombre: ', name.value)
-        console.log('Email: ', email.value)
+        console.log('Nombre: ', (name as HTMLInputElement).value)
+        console.log('Email: ', (email as HTMLInputElement).value)
         console.log('Servicio seleccionado: ', services.value)
-        console.log('Mensaje:', message.value)
+        console.log('Mensaje:', (message as HTMLInputElement).value)
         setTimeout(() => {
             handleFormOpen()
-            name.value = ""
-            email.value = ""
-            message.value = ""
+            (name as HTMLInputElement).value = ""
+            (email as HTMLInputElement).value = ""
+            (message as HTMLInputElement).value = ""
         }, 500)
     }
 
