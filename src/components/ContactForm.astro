@@ -32,7 +32,7 @@ await loadServices()
         <button id="closeButton" class="self-end rounded-lg transition-all p-1 hover:scale-110 hover:bg-red-600/40">
             <CrossIcon class="text-stone-200 size-8"/>
         </button>
-        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full">
+        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full pb-4">
         <SectionTitle title="Contáctanos"/>
     
         <!-- Inicio del formulario como tal -->
@@ -41,13 +41,13 @@ await loadServices()
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Nombre completo</label>
                 <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
-                <label id="nameError" class="text-red-700 text-sm">X El nombre no puede estar vacío</label>
+                <label id="nameError" class="text-red-700 text-sm">El nombre no puede estar vacío</label>
             </div>
 
             <div class="flex flex-col">
                 <label class="text-stone-200 font-bold">Correo electrónico</label>
                 <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="rounded-lg p-2"> 
-                <label id="emailError" class="text-red-700 text-sm">X El correo electrónico no puede estar vacío</label>
+                <label id="emailError" class="text-red-700 text-sm">El correo electrónico no puede estar vacío</label>
             </div>
     
             <!-- select con cada uno de los servicios a seleccionar-->
@@ -70,12 +70,14 @@ await loadServices()
             <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
         </form>
     </div>
-    <div id="formSubmitted" class="transition hidden bg-slate-950/100 shadow-lg shadow-black rounded-xl -translate-y-96 mx-4 content-center"> 
+
+    <!--Implementar si hay tiempo -->
+    <!-- <div id="formSubmitted" class="transition hidden bg-slate-950/100 shadow-lg shadow-black rounded-xl -translate-y-96 mx-4 content-center"> 
         <div class="flex flex-col items-center py-4">
             <h2 class="text-lg text-white">Mensaje enviado satisfactoriamente</h2>
             <CheckIcon class="text-green-700 size-11"/>
         </div>
-    </div>
+    </div> -->
 </section>
 
 <!-- 
@@ -111,6 +113,9 @@ await loadServices()
         }
     }
 
+    /**
+	*	Función que se encarga de mostrar un mensaje de error si el campo de email está vacío
+	*/
     const checkEmail = () => { 
         if ((email as HTMLInputElement).value !== "") { 
             document.getElementById('emailError').classList.add('hidden')
@@ -119,6 +124,9 @@ await loadServices()
         }
     }
 
+     /**
+	*	Función que se encarga de mostrar un mensaje de error si el campo de mensaje está vacío
+	*/
     const checkMessage = () => { 
         if ((message as HTMLInputElement).value !== "") { 
             document.getElementById('messageError').classList.add('hidden')
@@ -127,6 +135,9 @@ await loadServices()
         }
     }
 
+     /**
+	*	Función que se encarga de mostrar el botón de enviar formulario si todos los campos están completos
+	*/
     const checkAllFields = () => { 
         if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "") { 
             button.classList.remove('hidden')
@@ -143,17 +154,18 @@ await loadServices()
     message.addEventListener('input', checkMessage)
     message.addEventListener('input', checkAllFields)
 
+    /* 
+    * Función que se encatga de enviar el formulario
+    */
     const sendForm = () => { 
         console.log('Nombre: ', (name as HTMLInputElement).value)
         console.log('Email: ', (email as HTMLInputElement).value)
         console.log('Servicio seleccionado: ', services.value)
         console.log('Mensaje:', (message as HTMLInputElement).value)
-        setTimeout(() => {
-            handleFormOpen()
-            (name as HTMLInputElement).value = ""
-            (email as HTMLInputElement).value = ""
-            (message as HTMLInputElement).value = ""
-        }, 500)
+        (name as HTMLInputElement).value = ""
+        (email as HTMLInputElement).value = ""
+        (message as HTMLInputElement).value = ""
+        handleFormOpen
     }
 
     /**
