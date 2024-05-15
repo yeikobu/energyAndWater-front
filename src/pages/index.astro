@@ -49,7 +49,7 @@ await loadServices()
 ---
 
 <Layout title="Inicio - Energy & Water" desciption="Energy & Water - Mantenimiento para edificios">
-	<main transition:animate="slide" class="flex flex-col items-center space-y-28 pt-24 px-8 z-0">
+	<main class="flex flex-col items-center space-y-28 pt-24 px-8 z-0">
 		<!--Sección de la imagen principal junto con los textos -->
 		<section class="flex flex-col justify-center items-center">
 			<img src="/logo.jpeg" alt="Imagen del home el cual muestra a hombres haciendo mantenimiento de aire acondicionado">
@@ -73,7 +73,7 @@ await loadServices()
 		<!--Sección de los servicios obtenidos desde la API -->
 		<section class="flex flex-col space-y-4 items-center pt-10">
 			<SectionTitle title="Nuestros Servicios"/>
-			<div class="sm:grid sm:grid-cols-2 flex flex-col items-center w-[70%]">
+			<div class="sm:grid sm:grid-cols-2 flex flex-col items-center">
 				{//Iterando los el arreglo de servicios para mostrar cada uno a través de una ServiceCard
 					services.map((service) => (
 						<ServiceCard title={service.vch_service_name} description={service.vch_description} imgURL={service.vch_url_img}/>

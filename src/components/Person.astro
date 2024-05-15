@@ -1,0 +1,8 @@
+---
+const {image, name} = Astro.props
+---
+
+<div class="flex flex-col gap-2 items-center text-center">
+    <img src={image} alt=`Imagen de ${name}` class="w-[128px] h-[128px] object-cover rounded-full">
+    <p class="text-stone-200">{name}</p>
+</div>

@@ -1,0 +1,35 @@
+---
+import SectionTitle from "../components/SectionTitle.astro"
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout>
+    <main class="flex flex-col gap-20 justify-center items-center py-10 px-6">
+        <SectionTitle title="Creando ambientes gratos y confortables a través del mantenimiento" />
+        <section class="flex flex-col gap-4 sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <h3 class="text-stone-200 text-lg font-bold">Resumen</h3>
+            <p class="text-stone-400"> Bienvenido a Energy and Water SpA,  empresa dedicada a la instalación y reparación de sistemas de ventilación, calefacción, electricidad y construcción. Contamos con un equipo de profesionales altamente cualificados y con amplia experiencia en el sector. Ofrecemos soluciones a medida para cada cliente, garantizando la calidad y la seguridad de nuestros servicios. Contacta con nosotros y solicita tu presupuesto sin compromiso. </p>
+        </section>
+
+        <section class="flex flex-col gap-2 items-center" sm:w-[270px] md:w-[500px] lg:w-[800px]>
+            <img src="reparacion-matriz.jpeg" alt="Foto de reparación de una Matriz en CESFAM" class="sm:w-[270px] md:w-[500px] lg:w-[800px] rounded-lg">
+            <p class="text-xs text-stone-400">Reparación de Matriz  en CESFAM Padre Pierre Dubois, Pedro Aguirre Cerda.</p>
+        </section>
+
+        <section class="flex flex-col gap-4 sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <h3 class="text-stone-200 text-lg font-bold">En qué punto nos encontramos</h3>
+            <p class="text-stone-400"> Somos una empresa fundada en 2018 con el objetivo de brindar servicios integrales de mantenimiento para hogares, oficinas, comercios e industrias. Nuestra misión es satisfacer las necesidades de nuestros clientes con eficiencia, rapidez y profesionalidad. Nuestra visión es ser la empresa referente en el mercado por nuestra excelencia y compromiso. Nuestros valores son la honestidad, la responsabilidad, el respeto y la innovación.  </p>
+        </section>
+
+        <section class="flex flex-row gap-6 sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <div>
+                <img src="universidad.jpeg" alt="Foto de reparación en la univerdad de los Andes" class="rounded-lg">
+                <p class="text-xs text-stone-400">Universidad De Los Andes</p>
+            </div>
+            <div>
+                <img src="vina-cousino.jpeg" alt="Foto de reparación en la univerdad de los Andes" class="rounded-lg">
+                <p class="text-xs text-stone-400">Viña Cousiño Macul</p>
+            </div>
+        </section>
+    </main>
+</Layout>

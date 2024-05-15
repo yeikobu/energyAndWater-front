@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro"
+import { imageConfig } from "astro:assets";
+import Person from "../components/Person.astro";
+
+const ourEquip = [
+    {
+        name: 'Mizraim Abello Avello',
+        image: 'mizraim.jpg'
+    },
+    {
+        name: 'Marcelo Fuentes Orellana',
+        image: 'marcelo.jpg'
+    },
+    {
+        name: 'Luis Contreras Jara',
+        image: 'luis.jpg'
+    },
+    {
+        name: 'Mauricio Opazo Contreras',
+        image: 'mauricio.jpg'
+    },
+    {
+        name: 'Ignacia Campos González',
+        image: 'ignacia.jpg'
+    },
+]
+---
+
+<Layout>
+    <main class="flex flex-col gap-20 justify-center items-center py-10 px-6">
+        <SectionTitle title="Creando ambientes gratos y confortables a través del mantenimiento" />
+
+        <section class="flex flex-col gap-4 sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <h3 class="text-stone-200 text-lg font-bold">Liderazgo</h3>
+            <p class="text-stone-400">Mizraim Abello es el fundador de Energy and Water SpA, es un líder colaborativo que se desempeña en el ámbito laboral, específicamente en el sector de la climatización y electricidad. Practica un liderazgo democrático; es decir, que involucra al equipo de trabajo en la toma de decisiones y valora sus opiniones y sugerencias. Sus principales habilidades como líder son la resolución de problemas, la comunicación efectiva, el pensamiento crítico, la capacidad de coordinación y gestión. Algunos de los logros más destacados son haber participado en la acreditación de los centros de salud de la municipalidad de San Joaquín, reparación del equipo de climatización para el museo de la Universidad de los Andes y haber realizado reparaciones y cambios de grupos electrógenos que son críticos para el funcionamiento de los edificios. Uno de los desafíos que enfrentó como líder fue adaptarse a las nuevas normativas sanitarias por la pandemia y garantizar la seguridad del equipo y los clientes. Lo logró implementando protocolos de prevención y capacitando al personal. Su objetivo como líder es darle continuidad operacional a los clientes y mejorar constantemente los procesos de mantenimiento y calidad. </p>
+        </section>
+
+        <section class="flex flex-col gap-2 items-center sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <img src="mantenimiento-edificios.jpeg" alt="Foto de reparación de una Matriz en CESFAM" class="sm:w-[270px] md:w-[500px] lg:w-[800px] rounded-lg">
+            <p class="text-xs text-stone-400">Mantenimiento para edificios.</p>
+        </section>
+
+        <section class="flex flex-col items-center justify-center gap-4 sm:w-[270px] md:w-[500px] lg:w-[800px]">
+            <div>
+                <h3 class="text-stone-200 text-lg font-bold">Este es nuestro equipo</h3>
+                <p class="text-stone-400">En Energy And Water SpA nos dedicamos a crear ambientes gratos y confortables a través del mantenimiento para calderas, aire acondicionado, salas de bombas, grupos electrógenos y electricidad, entre otros.</p>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <img src="equipo.jpeg" alt="Foto de reparación de una Matriz en CESFAM" class="sm:w-[270px] md:w-[500px] lg:w-[800px] rounded-lg">
+                <p class="text-xs text-stone-400">El servicio nos mueve.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-10 p-10">
+                {ourEquip.map((person) => (
+                   <Person image={person.image} name={person.name} />
+                ))}
+            </div>
+        </section>
+    </main>
+</Layout>
