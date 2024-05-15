@@ -1,7 +1,9 @@
 ---
 import CrossIcon from "../../public/icons/CrossIcon.astro";
 ---
+<!--Fondo lateral izquierdo que se mustra solo al momento de desplegar el menú lateral -->
 <div id="bgBlack" class="hidden md:hidden bg-black/70 w-screen h-full fixed top-0 right-0 backdrop-blur-sm z-40"></div>
+<!--Menu lateral -->
 <div id="fullSideMenu" class="md:hidden flex flex-col bg-slate-950/80 backdrop-blur-sm fixed space-y-2 p-4 top-0 -right-[500px] transition-all h-screen z-50 w-[270px] shadow-md shadow-black">
     <button id="crossButton" class="hover:bg-red-600/20 p-1 rounded-lg self-end">
         <CrossIcon class="text-stone-200 size-6"/>
@@ -23,11 +25,15 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
 </div>
 
 <script>
+    //Importando el estado para mostrar u ocultar el menu lateral que se muestra en pantallas pequeñas
     import { showNavMenu } from "../store"
+
+    //Referencias de los elemtnos del DOM
     const crossButton = document.getElementById('crossButton')
     const bgBlack = document.getElementById('bgBlack')
     const fullSideMenu = document.getElementById('fullSideMenu')
 
+    //Escucha el estado showNavMenu para mostrar u ocultar el menu lateral
     showNavMenu.subscribe(open => {
         if (open) { 
             bgBlack.classList.remove('hidden')
@@ -40,7 +46,7 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
         }
     })
 
-
+    //Función que se encarga de cambiar el estado 'showNavMenu' a falso para esconder el menú lateral junto con el fondo de la izquierda
     const hideSideMenu = () => { 
         showNavMenu.set(false)
     }
