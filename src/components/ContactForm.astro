@@ -32,7 +32,7 @@ await loadServices()
         <button id="closeButton" class="self-end rounded-lg transition-all p-1 hover:scale-110 hover:bg-red-600/40">
             <CrossIcon class="text-stone-200 size-8"/>
         </button>
-        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-36 rounded-full pb-4">
+        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
         <SectionTitle title="Contáctanos"/>
     
         <!-- Inicio del formulario como tal -->
@@ -70,7 +70,7 @@ await loadServices()
             <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
         </form>
 
-        <div id="formSubmitted" class="transition hidden bg-slate-950/95 shadow-md shadow-black backdrop-blur-md rounded-xl -translate-y-96 mx-4 content-center p-4"> 
+        <div id="formSubmittedPopUp" class="transition hidden bg-slate-950/95 shadow-md shadow-black backdrop-blur-md rounded-xl -translate-y-96 mx-4 content-center p-4"> 
             <div class="flex flex-col items-center py-4">
                 <h2 class="text-lg text-white font-bold">Mensaje enviado satisfactoriamente</h2>
                 <CheckIcon class="text-green-700 size-11"/>
@@ -97,11 +97,9 @@ await loadServices()
     //Referencias de los elementos del DOM con relación a validar los campos del formulario
     const name = document.getElementById('fullName')
     const email = document.getElementById('email')
-    // const servicesSelect = document.getElementById('selectServices')
     const message = document.getElementById('message')
     const button = document.getElementById('sendForm')
-
-    const form = document.querySelector('#form')
+    const form = document.getElementById('form')
 
     /**
 	*	Función que se encarga de mostrar un mensaje de error si el campo de nombre está vacío
@@ -147,7 +145,7 @@ await loadServices()
         }
     }
 
-     //Escucnando todos los eventos de tipo input en los campos para mostrar u ocultar los errores
+    //Escucnando todos los eventos de tipo input en los campos para mostrar u ocultar los errores
     name.addEventListener('input', checkName)
     name.addEventListener('input', checkAllFields)
     email.addEventListener('input', checkEmail)
@@ -159,7 +157,7 @@ await loadServices()
     /**
 	*	Función que se encarga de ejecutar el cambio de estado para poder cerrar el formulario
 	*/
-    const handleFormOpen = () => { 
+    const closeForm = () => { 
         isContctUsFormOpen.set(false)
     }
 
@@ -181,22 +179,28 @@ await loadServices()
     })
 
     //El botón de cerrar cierra el formulario
-    closeButton.addEventListener('click' , handleFormOpen)
+    closeButton.addEventListener('click' , closeForm)
 
 
-    //Envío del formulario
+    //Envío del formulario 
     form.addEventListener('submit', (e) => {
         e.preventDefault()
 
-        document.querySelector("#formSubmitted").classList.remove('hidden')
+        //Mostrando mensaje de que el formulario se envío satisfactoriamente
+        document.getElementById("formSubmittedPopUp").classList.remove('hidden')
+
+        //Mostrando los valores del formulario por consola 
         console.log('Nombre: ', (name as HTMLInputElement).value)
         console.log('Email: ', (email as HTMLInputElement).value)
         console.log('Servicio seleccionado: ', (document.getElementById('selectServices') as HTMLSelectElement).value);
         console.log('Mensaje:', (message as HTMLTextAreaElement).value);
+
+        //Deshabilitando el botón de enviar formulario mientras se muestra el mensaje 
         button.classList.add('disabled')
         button.classList.remove('hover:scale-110')
         button.classList.remove('hover:bg-red-600/60')
 
+        //Cerrando el formulario a los 3 segundos y setteando los inputs por defecto
         setTimeout(() => {
             (name as HTMLInputElement).value = '';
             (email as HTMLInputElement).value = '';
@@ -204,11 +208,9 @@ await loadServices()
             button.classList.remove('disabled')
             button.classList.add('hover:scale-110')
             button.classList.add('hover:bg-red-600/60')
-            document.querySelector("#formSubmitted").classList.add('hidden')
-            isContctUsFormOpen.set(false)
-        }, 2000);
+            document.getElementById("formSubmittedPopUp").classList.add('hidden')
+            closeForm()
+        }, 3000);
     })
 
-    //Botón para enviar el formulario
-    // button.addEventListener('click', sendForm)
 </script>
