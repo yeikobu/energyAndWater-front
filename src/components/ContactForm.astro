@@ -86,7 +86,7 @@ await loadServices()
         como Preact, React, Vue, svelte, etc. Ya que Astro es agnóstico a la UI)
 -->
 <script>
-    //Importamos el átomo (estado) que queremos manejar para poder controlar si se ve o no el formulario
+    //Importa el átomo que contiene el estado para abrir o cerrar los formularios
     import { isContctUsFormOpen } from '../store.js';
 
     //Referencias de los elementos del DOM con relación a ocultar el formulario
@@ -178,7 +178,7 @@ await loadServices()
         }
     })
 
-    //El botón de cerrar cierra el formulario
+    //Cierra el formulario cuando se presiona el botón de cerrar
     closeButton.addEventListener('click' , closeForm)
 
 
