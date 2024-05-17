@@ -2,20 +2,20 @@
 import CrossIcon from "../../public/icons/CrossIcon.astro";
 ---
 <!--Fondo lateral izquierdo que se mustra solo al momento de desplegar el menú lateral -->
-<div id="bgBlack" class="hidden md:hidden bg-black/70 w-screen h-full fixed top-0 right-0 backdrop-blur-sm z-40"></div>
+<div id="bgBlack" class="hidden md:hidden w-screen h-full fixed top-0 right-0 backdrop-blur-sm z-40"></div>
 <!--Menu lateral -->
-<div id="fullSideMenu" class="md:hidden flex flex-col bg-slate-950/80 backdrop-blur-sm fixed space-y-2 p-4 top-0 -right-[500px] transition-all h-screen z-50 w-[270px] shadow-md shadow-black">
+<div id="fullSideMenu" class="md:hidden flex flex-col bg-slate-950/50 backdrop-blur-xl rounded-tl-xl rounded-bl-xl shadow-md shadow-black fixed space-y-2 p-4 top-0 -right-[500px] transition-all h-screen z-50 w-[270px]">
     <button id="crossButton" class="hover:bg-red-600/20 p-1 rounded-lg self-end">
         <CrossIcon class="text-stone-200 size-6"/>
     </button>
     <nav class="flex flex-col gap-4">
-        <a href="/" id="home" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/" id="home" class="bg-slate-900/40 hover:bg-red-600/40 backdrop-blur-3xl text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-105 cursor-pointer">
             Inicio
         </a>
-        <a href="/history" id="history" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/history" id="history" class="bg-slate-900/40 hover:bg-red-600/40 backdrop-blur-3xl text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
             Historia
         </a>
-        <a href="/equip" id="equip" class="bg-slate-900/10 hover:bg-red-600/10 backdrop-blur-sm text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+        <a href="/equip" id="equip" class="bg-slate-900/40 hover:bg-red-600/40  backdrop-blur-3xl text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
             Equipo
         </a>
     </nav>
