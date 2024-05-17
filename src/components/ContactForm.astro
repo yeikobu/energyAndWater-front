@@ -102,8 +102,8 @@ await loadServices()
     const form = document.getElementById('form')
 
     /**
-	*	Función que se encarga de mostrar un mensaje de error si el campo de nombre está vacío
-	*/
+     * Muestra un mensaje de error si el input de nombre está vacío
+     */
     const checkName = () => { 
         if ((name as HTMLInputElement).value !== "") { 
             document.getElementById('nameError').classList.add('hidden')
@@ -113,8 +113,8 @@ await loadServices()
     }
 
     /**
-	*	Función que se encarga de mostrar un mensaje de error si el campo de email está vacío
-	*/
+     * Muestra un mensaje de error si el input de email está vacío
+     */
     const checkEmail = () => { 
         if ((email as HTMLInputElement).value !== "") { 
             document.getElementById('emailError').classList.add('hidden')
@@ -123,9 +123,9 @@ await loadServices()
         }
     }
 
-     /**
-	*	Función que se encarga de mostrar un mensaje de error si el campo de mensaje está vacío
-	*/
+   /**
+    * Muestra un mensaje de error si el campo de mensaje está vacío
+    */ 
     const checkMessage = () => { 
         if ((message as HTMLInputElement).value !== "") { 
             document.getElementById('messageError').classList.add('hidden')
@@ -154,9 +154,9 @@ await loadServices()
     message.addEventListener('input', checkAllFields)
 
 
-    /**
-	*	Función que se encarga de ejecutar el cambio de estado para poder cerrar el formulario
-	*/
+   /**
+    * Cambia el estado para poder cerrar el formulario
+    */
     const closeForm = () => { 
         isContctUsFormOpen.set(false)
     }
