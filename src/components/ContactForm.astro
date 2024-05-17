@@ -15,7 +15,7 @@ let services = []
 /**
 *	Obteniendo los servicios de la API y guardándolos en el array de services para luego mostrarlos
 */
-async function loadServices() {
+const loadServices = async () => {
   try {
     services = await getServices('http://localhost/energyandwater/controller/ServicesController.php');
   } catch (error) {
@@ -26,8 +26,8 @@ async function loadServices() {
 await loadServices()
 ---
 
-<section id="formSectionContainer" class="bg-slate-950/80 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-md">
-    <div id="fullFrom" class="bg-slate-950 transition-all ease-in-out duration-150 translate-y-full flex flex-col items-center justify-center m-auto p-8 rounded-xl sm:w-[300px] md:w-[500px] lg:-w[800px]">
+<section id="formSectionContainer" class="bg-slate-950/20 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-lg">
+    <div id="fullFrom" class="bg-slate-950/95 transition-all ease-in-out duration-150 translate-y-full flex flex-col items-center shadow-md shadow-black p-6 m-auto rounded-xl max-w-[700px] ">
         <!--Botón de cierre -->
         <button id="closeButton" class="self-end rounded-lg transition-all p-1 hover:scale-110 hover:bg-red-600/40">
             <CrossIcon class="text-stone-200 size-8"/>
@@ -39,35 +39,35 @@ await loadServices()
         <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
             <!--Campo del nombre -->
             <div class="flex flex-col">
-                <label class="text-stone-200 font-bold">Nombre completo</label>
-                <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="rounded-lg p-2"> 
-                <label id="nameError" class="text-red-700 text-sm">El nombre no puede estar vacío</label>
+                <label class="text-stone-300 font-bold">Nombre completo</label>
+                <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
+                <label id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</label>
             </div>
 
             <div class="flex flex-col">
-                <label class="text-stone-200 font-bold">Correo electrónico</label>
-                <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="rounded-lg p-2"> 
-                <label id="emailError" class="text-red-700 text-sm">El correo electrónico no puede estar vacío</label>
+                <label class="text-stone-300 font-bold">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
+                <label id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</label>
             </div>
     
             <!-- select con cada uno de los servicios a seleccionar-->
             <div class="flex flex-col">
-                <label class="text-stone-200 font-bold">Servicio a consultar</label>
-                <select name="Servicios" id="selectServices" class="rounded-lg p-2">
+                <label class="text-stone-300 font-bold">Servicio a consultar</label>
+                <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5">
                     <!--Cargando los servicios desde la API-->
                     {services.map((service) => (
-                        <option value={service.vch_service_name}>{service.vch_service_name}</option>
+                        <option value={service.vch_service_name} >{service.vch_service_name}</option>
                     ))}
                 </select>
             </div>
     
             <div class="flex flex-col">
-                <label class="text-stone-200 font-bold">Mensaje</label>
-                <textarea name="" id="message" class="text-input-message rounded-lg p-2" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
-                <label id="messageError" class="text-red-700 text-sm">El campo de mensaje no puede estar vacío</label>
+                <label class="text-stone-300 font-bold">Mensaje</label>
+                <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
+                <label id="messageError" class="text-red-900 text-sm">El campo de mensaje no puede estar vacío</label>
             </div>
     
-            <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold  hover:scale-110 hover:bg-red-600/60 cursor-pointer">
+            <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/40 shadow-md shadow-black text-stone-300 rounded-full gap-x-2 py-3 md:py-3 mx-10 text-sm md:text-base transition font-bold hover:scale-110 hover:bg-red-600/60 cursor-pointer">
         </form>
 
         <div id="formSubmittedPopUp" class="transition hidden bg-slate-950/95 shadow-md shadow-black backdrop-blur-md rounded-xl -translate-y-96 mx-4 content-center p-4"> 
