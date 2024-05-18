@@ -1,0 +1,49 @@
+---
+import ContactForm from "../components/ContactForm.astro";
+import FaqCard from "../components/FaqCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout> 
+    <main class="flex flex-col items-center space-y-28 m-auto pt-24 px-8 z-0 max-w-[1400px]">
+        <h1 class="text-white text-2xl sm:text-3xl font-extrabold shadow-primary"><span class="bg-gradient-to-r from-stone-300 via-stone-300 to-stone-300 text-transparent bg-clip-text">Preguntas frecuentes</span></h1>
+        <section class="flex flex-col gap-6 justify-center items-baseline max-w-[800px] h-[500px]">
+            <FaqCard id="requestEstimateTitle" title="¿Cómo solicito una cotización?"> 
+                <p class="transition text-stone-400 text-sm">Puedes contactarnos al correo <a href="mailto:contacto@energyandwater.cl">contacto@energyandwater.cl</a> o al +56232569798.</p>
+            </FaqCard>
+    
+            <FaqCard id="technicalVisitTitle" title="¿Necesitas visita técnica?"> 
+                <p class="transition text-stone-400 text-sm">Puedes solicitar visita técnica para evaluación mediante correo electrónico <a href="mailto:contacto@energyandwater.cl">contacto@energyandwater.cl</a> o al +56232569798.</p>
+            </FaqCard>
+    
+            <FaqCard id="airConditionerTitle" title="¿Qué tipo de aire acondicionado pueden revisar?"> 
+                <p class="transition text-stone-400 text-sm">Revisamos, reparamos e instalamos equipos domiciliarios e industriales.</p>
+            </FaqCard>
+    
+            <FaqCard id="instalationAtHomeTitle" title="¿Realizan instalación de aire acondicionado domiciliario?"> 
+                <p class="transition text-stone-400 text-sm">Ofrecemos soluciones a medida para cada cliente, garantizando la calidad y la seguridad de nuestros servicios. Contacta con nosotros y solicita tu presupuesto sin compromiso. </p>
+            </FaqCard>
+        </section>
+
+        <button type="button" id="showFormButton" class="bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">Nuestro formulario de contacto</button>
+    </main>
+    <ContactForm />
+</Layout>
+
+<script>
+    //Atomo(estado) que permitirá manejar el estado para mostrar el formulario. Esto es posible gracias a la librería de Nano Store
+	import { isContctUsFormOpen } from '../store.js'
+
+    //Referencia al DOM
+    const showFormButton = document.getElementById('showFormButton')
+
+    /**
+    *	Función que se encargará de ejecutar el cambio de estado para poder abrir el formulario
+    */
+    const handleShowForm = () =>  {
+        isContctUsFormOpen.set(true)
+    }
+
+    //Ejecuta la acción de abrir el formulario
+    showFormButton.addEventListener('click', handleShowForm)
+</script>

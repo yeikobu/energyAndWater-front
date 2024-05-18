@@ -1,0 +1,35 @@
+---
+const { title, id } = Astro.props
+---
+<div id={id} class="transition duration-600 flex flex-col gap-4 p-4 rounded-2xl shadow-sm shadow-black backdrop-blur-xl w-[300px] bg-slate-950/20 hover:scale-110">
+    <h2 class="text-lg text-stone-100/80 font-bold">
+      {title}
+    </h2>
+    <div id={`title-${id}`} class="hidden scale-10 transition duration-600">
+      <slot />
+    </div>
+</div>     
+
+<script define:vars={{ id }}>
+    const container = document.getElementById(`${id}`);
+    const titleElement = document.getElementById(`title-${id}`);
+
+    container.addEventListener('mouseenter', () => {
+        setTimeout(() => {
+            titleElement.classList.remove('hidden');
+        }, 10);
+        setTimeout(() => {
+            titleElement.classList.remove('scale-10');
+            titleElement.classList.add('scale-100'); 
+        }, 600);
+        // titleElement.classList.remove('h-0')
+        // titleElement.classList.add('h-full')
+           
+    });
+
+    container.addEventListener('mouseleave', () => {
+        // titleElement.classList.remove('h-full');
+            titleElement.classList.add('hidden')
+            // titleElement.classList.add('opacity-0')
+    });
+</script>
