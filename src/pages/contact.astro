@@ -4,9 +4,10 @@ import CrossIcon from "../../public/icons/CrossIcon.astro"
 import CheckIcon from "../../public/icons/CheckIcon.astro"
 
 //Componentes
-import SectionTitle from "./SectionTitle.astro"
+import SectionTitle from "../components/SectionTitle.astro"
 
 import { getServices } from "../api/services"
+import Layout from "../layouts/Layout.astro"
 
 
 //Este array almacena los servicios a renderizar en el html
@@ -25,59 +26,59 @@ const loadServices = async () => {
 
 await loadServices()
 ---
+<Layout> 
+    <main class="block m-auto pt-24 max-w-[700px]">
+        <section>
+            <div id="fullFrom" class="bg-slate-950/40 flex flex-col items-center rounded-2xl shadow-lg shadow-black backdrop-blur-xl p-6 m-auto">
+                <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
+                <SectionTitle title="Contáctanos"/>
+            
+                <!-- Inicio del formulario como tal -->
+                <form id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
+                    <!--Campo del nombre -->
+                    <div class="flex flex-col">
+                        <p class="text-stone-300 font-bold">Nombre completo</p>
+                        <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
+                        <p id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</p>
+                    </div>
+        
+                    <div class="flex flex-col">
+                        <p class="text-stone-300 font-bold">Correo electrónico</p>
+                        <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
+                        <p id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</p>
+                    </div>
+            
+                    <!-- select con cada uno de los servicios a seleccionar-->
+                    <div class="flex flex-col">
+                        <p class="text-stone-300 font-bold">Servicio a consultar</p>
+                        <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl">
+                            <!--Cargando los servicios desde la API-->
+                            {services.map((service) => (
+                                <option value={service.vch_service_name} >{service.vch_service_name}</option>
+                            ))}
+                        </select>
+                    </div>
+            
+                    <div class="flex flex-col">
+                        <p class="text-stone-300 font-bold">Mensaje</p>
+                        <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
+                        <p id="messageError" class="text-red-900 text-sm">El mensaje no puede estar vacío</p>
+                    </div>
+            
+                    <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl py-3 md:py-3 mx-6 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+                </form>
+            </div>
+        </section>
 
-<section id="formSectionContainer" class="bg-slate-950/20 content-center hidden fixed h-screen top-0 bottom-0 left-0 right-0 space-y-4 z-40 backdrop-blur-lg">
-    <div id="fullFrom" class="bg-slate-950/95 transition-all ease-in-out duration-150 translate-y-full flex flex-col items-center shadow-md shadow-black p-6 m-auto rounded-xl max-w-[700px] ">
-        <!--Botón de cierre -->
-        <button id="closeButton" class="self-end rounded-lg transition-all p-1 hover:scale-110 hover:bg-red-600/40">
-            <CrossIcon class="text-stone-200 size-8"/>
-        </button>
-        <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
-        <SectionTitle title="Contáctanos"/>
-    
-        <!-- Inicio del formulario como tal -->
-        <form id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
-            <!--Campo del nombre -->
-            <div class="flex flex-col">
-                <p class="text-stone-300 font-bold">Nombre completo</p>
-                <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
-                <p id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</p>
-            </div>
-
-            <div class="flex flex-col">
-                <p class="text-stone-300 font-bold">Correo electrónico</p>
-                <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
-                <p id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</p>
-            </div>
-    
-            <!-- select con cada uno de los servicios a seleccionar-->
-            <div class="flex flex-col">
-                <p class="text-stone-300 font-bold">Servicio a consultar</p>
-                <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5">
-                    <!--Cargando los servicios desde la API-->
-                    {services.map((service) => (
-                        <option value={service.vch_service_name} >{service.vch_service_name}</option>
-                    ))}
-                </select>
-            </div>
-    
-            <div class="flex flex-col">
-                <p class="text-stone-300 font-bold">Mensaje</p>
-                <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
-                <p id="messageError" class="text-red-900 text-sm">El campo de mensaje no puede estar vacío</p>
-            </div>
-    
-            <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl py-3 md:py-3 mx-6 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
-        </form>
-
-        <div id="formSubmittedPopUp" class="transition hidden bg-slate-950/50 shadow-md shadow-black backdrop-blur-lg rounded-xl -translate-y-96 mx-4 content-center p-4"> 
+        <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-1/2 -translate-y-96 bg-slate-950 shadow-lg shadow-black rounded-xl mx-4 content-center p-4"> 
             <div class="flex flex-col items-center py-4">
                 <h2 class="text-lg text-white font-bold">Mensaje enviado satisfactoriamente</h2>
                 <CheckIcon class="text-green-700 size-11"/>
             </div>
         </div>
-    </div>
-</section>
+    </main>
+</Layout>
+
 
 <!-- 
     Profe, no sé si usted ha usado Astro, pero aquí quiero explicarle que el script de abajo es porque Astro por defecto intenta usar el mínimo
@@ -86,14 +87,6 @@ await loadServices()
         como Preact, React, Vue, svelte, etc. Ya que Astro es agnóstico a la UI)
 -->
 <script>
-    //Importa el átomo que contiene el estado para abrir o cerrar los formularios
-    import { isContctUsFormOpen } from '../store.js';
-
-    //Referencias de los elementos del DOM con relación a ocultar el formulario
-    const formSectionContainer = document.getElementById('formSectionContainer')
-    const fullForm = document.getElementById('fullFrom')
-    const closeButton = document.getElementById('closeButton')
-
     //Referencias de los elementos del DOM con relación a validar los campos del formulario
     const name = document.getElementById('fullName')
     const email = document.getElementById('email')
@@ -153,41 +146,13 @@ await loadServices()
     message.addEventListener('input', checkMessage)
     message.addEventListener('input', checkAllFields)
 
-
-   /**
-    * Cambia el estado para poder cerrar el formulario
-    */
-    const closeForm = () => { 
-        isContctUsFormOpen.set(false)
-    }
-
-    // Escucha los cambios en el átomo(estado) del store y muestra/oculta el diálogo en consecuencia
-    isContctUsFormOpen.subscribe(open => {
-        if (open) {
-            formSectionContainer.classList.remove('hidden')
-            setTimeout(() => {
-                fullForm.classList.remove('translate-y-full')
-                fullForm.classList.add('translate-y-0')
-            }, 1)
-        } else {
-            fullForm.classList.remove('translate-y-0')
-            fullForm.classList.add('translate-y-full')
-            setTimeout(() => {
-                formSectionContainer.classList.add('hidden')
-            }, 100)
-        }
-    })
-
-    //Cierra el formulario cuando se presiona el botón de cerrar
-    closeButton.addEventListener('click' , closeForm)
-
-
     //Envío del formulario 
     form.addEventListener('submit', (e) => {
         e.preventDefault()
 
         //Mostrando mensaje de que el formulario se envío satisfactoriamente
-        document.getElementById("formSubmittedPopUp").classList.remove('hidden')
+        document.getElementById("formSubmittedPopUp").classList.remove('scale-0')
+        document.getElementById("formSubmittedPopUp").classList.add('scale-100')
 
         //Mostrando los valores del formulario por consola 
         console.log('Nombre: ', (name as HTMLInputElement).value)
@@ -208,8 +173,13 @@ await loadServices()
             button.classList.remove('disabled')
             button.classList.add('hover:scale-110')
             button.classList.add('hover:bg-red-600/60')
-            document.getElementById("formSubmittedPopUp").classList.add('hidden')
-            closeForm()
+            button.classList.add('hidden')
+            document.getElementById('nameError').classList.remove('hidden')
+            document.getElementById('emailError').classList.remove('hidden')
+            document.getElementById('messageError').classList.remove('hidden')
+            document.getElementById("formSubmittedPopUp").classList.add('scale-0')
+            document.getElementById("formSubmittedPopUp").classList.remove('scale-100')
+            // closeForm()
         }, 3000);
     })
 

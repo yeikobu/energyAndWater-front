@@ -10,7 +10,7 @@ import Layout from '../layouts/Layout.astro'
 import SectionTitle from "../components/SectionTitle.astro"
 import MainteinanceCard from '../components/MainteinanceCard.astro'
 import ServiceCard from "../components/ServiceCard.astro"
-import ContactForm from "../components/ContactForm.astro"
+import ContactForm from "./contact.astro"
 
 //Importando SVG, pero en formato astro para poder controlar sus propiedades mediante tailwind
 import WhatsApp from "../../public/icons/WhatsApp.astro"
@@ -92,31 +92,13 @@ await loadServices()
 			</div>
 			<p class="text-stone-300">O</p>
 			<!-- <a transition:animate="initial" href="/contactForm"> -->
-				<button type="button" id="showFormButton" class="bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">Nuestro formulario de contacto</button>
+				<button type="button" id="showFormButton" class="bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+					<a href="/contact">Nuestro formulario de contacto</a>
+				</button>
 			<!-- </a> -->
 		</section>
 	</main>
-
-	<ContactForm />
 </Layout>
-
-<script>
-	//Atomo(estado) que permitirá manejar el estado para mostrar el formulario. Esto es posible gracias a la librería de Nano Store
-	import { isContctUsFormOpen } from '../store.js'
-
-	//Referencia al DOM
-	const showFormButton = document.getElementById('showFormButton')
-
-	/**
-	*	Función que se encargará de ejecutar el cambio de estado para poder abrir el formulario
-	*/
-	const handleShowForm = () =>  {
-		isContctUsFormOpen.set(true)
-	}
-
-	//Ejecuta la acción de abrir el formulario
-	showFormButton.addEventListener('click', handleShowForm)
-</script>
 
 <style>
 	* {
