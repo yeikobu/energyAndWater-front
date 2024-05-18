@@ -22,14 +22,9 @@ const { title, id } = Astro.props
             titleElement.classList.remove('scale-10');
             titleElement.classList.add('scale-100'); 
         }, 600);
-        // titleElement.classList.remove('h-0')
-        // titleElement.classList.add('h-full')
-           
     });
 
     container.addEventListener('mouseleave', () => {
-        // titleElement.classList.remove('h-full');
-            titleElement.classList.add('hidden')
-            // titleElement.classList.add('opacity-0')
+        titleElement.classList.add('hidden')
     });
 </script>
