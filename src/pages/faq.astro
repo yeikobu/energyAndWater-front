@@ -25,9 +25,10 @@ import Layout from "../layouts/Layout.astro";
             </FaqCard>
         </section>
 
-        <button type="button" id="showFormButton" class="bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">Nuestro formulario de contacto</button>
+        <button type="button" id="showFormButton" class="bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl inline-flex justify-center items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
+            <a href="/contact">Nuestro formulario de contacto</a>
+        </button>
     </main>
-    <ContactForm />
 </Layout>
 
 <script>
