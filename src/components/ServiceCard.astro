@@ -11,13 +11,12 @@ const { title, description, imgURL } = Astro.props;
 </div>
 
 <script>
-    import { isContctUsFormOpen, selectedService } from "../store"
+    import { selectedService } from "../store"
     const btnCotizar = document.getElementById('btnCotizar')
     const serviceTitle = document.getElementById('serviceTitle').textContent
 
     const setSelectedService = () => { 
         selectedService.set(serviceTitle)
-        isContctUsFormOpen.set(true)
     }
 
     btnCotizar.addEventListener('click', setSelectedService)
