@@ -36,23 +36,23 @@ await loadServices()
         <SectionTitle title="Contáctanos"/>
     
         <!-- Inicio del formulario como tal -->
-        <form action="" id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
+        <form id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
             <!--Campo del nombre -->
             <div class="flex flex-col">
-                <label class="text-stone-300 font-bold">Nombre completo</label>
+                <p class="text-stone-300 font-bold">Nombre completo</p>
                 <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
-                <label id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</label>
+                <p id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</p>
             </div>
 
             <div class="flex flex-col">
-                <label class="text-stone-300 font-bold">Correo electrónico</label>
+                <p class="text-stone-300 font-bold">Correo electrónico</p>
                 <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5"> 
-                <label id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</label>
+                <p id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</p>
             </div>
     
             <!-- select con cada uno de los servicios a seleccionar-->
             <div class="flex flex-col">
-                <label class="text-stone-300 font-bold">Servicio a consultar</label>
+                <p class="text-stone-300 font-bold">Servicio a consultar</p>
                 <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5">
                     <!--Cargando los servicios desde la API-->
                     {services.map((service) => (
@@ -62,9 +62,9 @@ await loadServices()
             </div>
     
             <div class="flex flex-col">
-                <label class="text-stone-300 font-bold">Mensaje</label>
+                <p class="text-stone-300 font-bold">Mensaje</p>
                 <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 backdrop-blur-sm border border-slate-900/40 border-0.5" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
-                <label id="messageError" class="text-red-900 text-sm">El campo de mensaje no puede estar vacío</label>
+                <p id="messageError" class="text-red-900 text-sm">El campo de mensaje no puede estar vacío</p>
             </div>
     
             <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl py-3 md:py-3 mx-6 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">

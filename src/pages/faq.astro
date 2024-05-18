@@ -40,9 +40,11 @@ import Layout from "../layouts/Layout.astro";
     /**
     *	Función que se encargará de ejecutar el cambio de estado para poder abrir el formulario
     */
+    
     const handleShowForm = () =>  {
         isContctUsFormOpen.set(true)
     }
+
 
     //Ejecuta la acción de abrir el formulario
     showFormButton.addEventListener('click', handleShowForm)
