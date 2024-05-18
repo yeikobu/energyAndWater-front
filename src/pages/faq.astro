@@ -30,23 +30,3 @@ import Layout from "../layouts/Layout.astro";
         </button>
     </main>
 </Layout>
-
-<script>
-    //Atomo(estado) que permitirá manejar el estado para mostrar el formulario. Esto es posible gracias a la librería de Nano Store
-	import { isContctUsFormOpen } from '../store.js'
-
-    //Referencia al DOM
-    const showFormButton = document.getElementById('showFormButton')
-
-    /**
-    *	Función que se encargará de ejecutar el cambio de estado para poder abrir el formulario
-    */
-    
-    const handleShowForm = () =>  {
-        isContctUsFormOpen.set(true)
-    }
-
-
-    //Ejecuta la acción de abrir el formulario
-    showFormButton.addEventListener('click', handleShowForm)
-</script>
