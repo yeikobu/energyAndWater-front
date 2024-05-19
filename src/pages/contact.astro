@@ -34,25 +34,32 @@ await loadServices()
                 <SectionTitle title="Contáctanos"/>
                 
                 <!-- Inicio del formulario como tal -->
-                <form id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
+                <form id="form" method="post" class="flex flex-col justify-start pt-10 gap-4 space-y-4 w-full">
                     <!--Campo del nombre -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Nombre completo</p>
-                        <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
+                        <input type="text" id="fullName" placeholder="Ingrese su nombre completo" class="text-stone-300 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
                         <p id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</p>
                     </div>
         
                     <!--Campo del correo electrónico -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Correo electrónico</p>
-                        <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
+                        <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-300 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
                         <p id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</p>
+                    </div>
+
+                     <!--Campo de la dirección-->
+                     <div class="flex flex-col">
+                        <p class="text-stone-300 font-bold">Dirección</p>
+                        <input type="text" id="address" placeholder="Ingrese su dirección. Ej: Las calilas 123, Lo Espejo" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
+                        <p id="addressError" class="text-red-900 text-sm">La dirección no puede estar vacía</p>
                     </div>
             
                     <!--Select con cada uno de los servicios a seleccionar-->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Servicio a consultar</p>
-                        <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl">
+                        <select name="Servicios" id="selectServices" class="text-stone-300 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl">
                             <!--Cargando los servicios que fueron traídos desde la API-->
                             {services.map((service) => (
                                 <option value={service.vch_service_name} >{service.vch_service_name}</option>
@@ -63,7 +70,7 @@ await loadServices()
                     <!--Text area del mensaje -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Mensaje</p>
-                        <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
+                        <textarea name="" id="message" class="text-stone-300 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
                         <p id="messageError" class="text-red-900 text-sm">El mensaje no puede estar vacío</p>
                     </div>
 
@@ -80,10 +87,10 @@ await loadServices()
         </section>
 
         <!--Mensaje de que el formulario se envió correctamente -->
-        <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-1/2 -translate-y-96 bg-slate-950 shadow-lg shadow-black rounded-xl m-auto"> 
-            <div class="flex flex-col items-center p-4">
+        <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-[0%] md:translate-x-1/2 md:-translate-y-[400%] -translate-y-[700px] bg-slate-950 shadow-lg shadow-black rounded-xl m-4 p-6"> 
+            <div class="flex flex-col items-center">
                 <h2 class="text-lg text-white font-bold">Mensaje enviado satisfactoriamente</h2>
-                <CheckIcon class="text-green-700 size-11"/>
+                <CheckIcon class="text-green-500 size-11"/>
             </div>
         </div>
     </main>
@@ -100,6 +107,7 @@ await loadServices()
     //Referencias de los elementos del DOM con relación a validar los campos del formulario
     const name = document.getElementById('fullName')
     const email = document.getElementById('email')
+    const address = document.getElementById('address')
     const message = document.getElementById('message')
     const termsAndConditionsContainer = document.getElementById('termsAndConditionsContainer')
     const termsAndConditions = document.getElementById('termsAndConditions')
@@ -128,6 +136,17 @@ await loadServices()
         }
     }
 
+     /**
+     * Muestra un mensaje de error si el input de dirección está vacío
+     */
+     const checkAddress = () => { 
+        if ((address as HTMLInputElement).value !== "") { 
+            document.getElementById('addressError').classList.add('hidden')
+        } else { 
+            document.getElementById('addressError').classList.remove('hidden')
+        }
+    }
+
    /**
     * Muestra un mensaje de error si el campo de mensaje está vacío
     */ 
@@ -143,7 +162,7 @@ await loadServices()
 	*	Función que se encarga de mostrar el botón de enviar formulario si todos los campos están completos
 	*/
     const checkAllFields = () => { 
-        if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "" && (termsAndConditions as HTMLInputElement).checked) { 
+        if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "" && (address as HTMLInputElement).value !== "" && (termsAndConditions as HTMLInputElement).checked) { 
             button.classList.remove('hidden')
         } else { 
             button.classList.add('hidden')
@@ -155,6 +174,8 @@ await loadServices()
     name.addEventListener('input', checkAllFields)
     email.addEventListener('input', checkEmail)
     email.addEventListener('input', checkAllFields)
+    address.addEventListener('input', checkAddress)
+    address.addEventListener('input', checkAllFields)
     message.addEventListener('input', checkMessage)
     message.addEventListener('input', checkAllFields)
     termsAndConditions.addEventListener('change', checkAllFields)
@@ -170,6 +191,7 @@ await loadServices()
         //Mostrando los valores del formulario por consola 
         console.log('Nombre: ', (name as HTMLInputElement).value)
         console.log('Email: ', (email as HTMLInputElement).value)
+        console.log('Dirección', (address as HTMLInputElement).value)
         console.log('Servicio seleccionado: ', (document.getElementById('selectServices') as HTMLSelectElement).value);
         console.log('Mensaje:', (message as HTMLTextAreaElement).value);
 
@@ -182,6 +204,7 @@ await loadServices()
         setTimeout(() => {
             (name as HTMLInputElement).value = '';
             (email as HTMLInputElement).value = '';
+            (address as HTMLInputElement).value = '';
             (message as HTMLTextAreaElement).value = '';
             button.classList.remove('disabled')
             button.classList.add('hover:scale-110')
@@ -189,6 +212,7 @@ await loadServices()
             button.classList.add('hidden')
             document.getElementById('nameError').classList.remove('hidden')
             document.getElementById('emailError').classList.remove('hidden')
+            document.getElementById('addressError').classList.remove('hidden')
             document.getElementById('messageError').classList.remove('hidden')
             document.getElementById("formSubmittedPopUp").classList.add('scale-0')
             document.getElementById("formSubmittedPopUp").classList.remove('scale-100')
