@@ -32,7 +32,7 @@ await loadServices()
             <div id="fullFrom" class="bg-slate-950/40 flex flex-col items-center rounded-2xl shadow-lg shadow-black backdrop-blur-xl p-6 m-auto">
                 <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
                 <SectionTitle title="Contáctanos"/>
-            
+                
                 <!-- Inicio del formulario como tal -->
                 <form id="form" method="post" class="flex flex-col justify-start pt-10 space-y-4 w-full">
                     <!--Campo del nombre -->
@@ -42,34 +42,44 @@ await loadServices()
                         <p id="nameError" class="text-red-900 text-xs">El nombre no puede estar vacío</p>
                     </div>
         
+                    <!--Campo del correo electrónico -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Correo electrónico</p>
                         <input type="email" id="email" placeholder="Ingrese su correo electrónico" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl"> 
                         <p id="emailError" class="text-red-900 text-sm">El correo electrónico no puede estar vacío</p>
                     </div>
             
-                    <!-- select con cada uno de los servicios a seleccionar-->
+                    <!--Select con cada uno de los servicios a seleccionar-->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Servicio a consultar</p>
                         <select name="Servicios" id="selectServices" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl">
-                            <!--Cargando los servicios desde la API-->
+                            <!--Cargando los servicios que fueron traídos desde la API-->
                             {services.map((service) => (
                                 <option value={service.vch_service_name} >{service.vch_service_name}</option>
                             ))}
                         </select>
                     </div>
             
+                    <!--Text area del mensaje -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Mensaje</p>
                         <textarea name="" id="message" class="text-stone-400 rounded-lg p-2 bg-slate-900/20 shadow-sm shadow-black backdrop-blur-xl" cols="34" rows="5" placeholder="Ingrese su mensaje indicando su pregunta"></textarea>
                         <p id="messageError" class="text-red-900 text-sm">El mensaje no puede estar vacío</p>
                     </div>
+
+                    <!--Input de los términos y condiciones -->
+                    <div id="termsAndConditionsContainer" class="flex space-x-2">
+                        <input type="checkbox" name="Términos y condiciones de uso" id="termsAndConditions">
+                        <p class="text-stone-300 text-sm underline">Acepto los términos y condiciones</p>
+                    </div>
             
+                    <!--Botón para enviar el formulario -->
                     <input type="submit" id="sendForm" value="Enviar formulario de contacto" class="hidden bg-red-600/30 hover:bg-red-600/60 shadow-sm shadow-black backdrop-blur-md text-stone-300 rounded-xl py-3 md:py-3 mx-6 text-sm md:text-base transition font-bold hover:scale-110 cursor-pointer">
                 </form>
             </div>
         </section>
 
+        <!--Mensaje de que el formulario se envió correctamente -->
         <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-1/2 -translate-y-96 bg-slate-950 shadow-lg shadow-black rounded-xl m-auto"> 
             <div class="flex flex-col items-center p-4">
                 <h2 class="text-lg text-white font-bold">Mensaje enviado satisfactoriamente</h2>
@@ -91,6 +101,8 @@ await loadServices()
     const name = document.getElementById('fullName')
     const email = document.getElementById('email')
     const message = document.getElementById('message')
+    const termsAndConditionsContainer = document.getElementById('termsAndConditionsContainer')
+    const termsAndConditions = document.getElementById('termsAndConditions')
     const button = document.getElementById('sendForm')
     const form = document.getElementById('form')
 
@@ -131,7 +143,7 @@ await loadServices()
 	*	Función que se encarga de mostrar el botón de enviar formulario si todos los campos están completos
 	*/
     const checkAllFields = () => { 
-        if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "") { 
+        if ((name as HTMLInputElement).value !== "" && (email as HTMLInputElement).value !== "" && (message as HTMLInputElement).value !== "" && (termsAndConditions as HTMLInputElement).checked) { 
             button.classList.remove('hidden')
         } else { 
             button.classList.add('hidden')
@@ -145,6 +157,7 @@ await loadServices()
     email.addEventListener('input', checkAllFields)
     message.addEventListener('input', checkMessage)
     message.addEventListener('input', checkAllFields)
+    termsAndConditions.addEventListener('change', checkAllFields)
 
     //Envío del formulario 
     form.addEventListener('submit', (e) => {
