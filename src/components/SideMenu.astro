@@ -8,6 +8,8 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
     <button id="crossButton" class="hover:bg-red-600/20 p-1 rounded-lg self-end">
         <CrossIcon class="text-stone-200 size-8"/>
     </button>
+
+    <!--Opciones del menú -->
     <nav class="flex flex-col gap-4">
         <a href="/" id="home" class="bg-slate-900/20 hover:bg-red-600/40 shadow-sm shadow-black backdrop-blur-xl text-stone-300 rounded-lg inline-flex justify-start items-center gap-x-2 py-2 px-4 md:py-2 md:px-4 text-sm md:text-base transition font-bold hover:scale-105 cursor-pointer">
             Inicio
@@ -49,11 +51,15 @@ import CrossIcon from "../../public/icons/CrossIcon.astro";
         }
     })
 
-    //Función que se encarga de cambiar el estado 'showNavMenu' a falso para esconder el menú lateral junto con el fondo de la izquierda
+    /**
+     * Cambia el estado a false para esconder el menú lateral
+     */
     const hideSideMenu = () => { 
         showNavMenu.set(false)
     }
 
     crossButton.addEventListener('click', hideSideMenu)
+
+    //Esconde el menú lateral al momento de presionar al lado que no tiene el menú
     bgBlack.addEventListener('click', hideSideMenu)
 </script>

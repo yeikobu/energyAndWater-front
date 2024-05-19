@@ -8,7 +8,7 @@ import HamburgerMenuIcon from "../../public/icons/HamburgerMenuIcon.astro"
         <a class="px-1 items-center justify-center" href="/">
             <img src="/logo.jpeg" alt="Logo de Energy and water" class="md:size-12 size-10 rounded-full" />
         </a>
-        
+
         <!-- Menú de hamburguesa para dispositivos pequeños -->
         <div class="md:hidden flex items-center">
             <button id="showMenuButton" class="text-stone-300 hover:bg-red-600/20 rounded-lg p-1 transition focus:outline-none">
@@ -39,9 +39,13 @@ import HamburgerMenuIcon from "../../public/icons/HamburgerMenuIcon.astro"
 
 
 <script> 
+    //Importa el átomo para controlar el estado de la barra de navegación lateral
     import { showNavMenu } from "../store"
     const showMenuButton = document.getElementById('showMenuButton')
 
+    /**
+     * Cambia el estado a tru para mostrar el menú lateral en dispositivos pequeños
+     */
     const showSideMenu = () => { 
         showNavMenu.set(true)
     }
