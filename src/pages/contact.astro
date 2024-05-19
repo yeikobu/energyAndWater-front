@@ -27,14 +27,14 @@ const loadServices = async () => {
 await loadServices()
 ---
 <Layout title="Contacto" descripción="Cotiza nuestros servicios aquí"> 
-    <main class="block m-auto pt-24 px-6 max-w-[700px]">
-        <section>
-            <div id="fullFrom" class="bg-slate-950/40 flex flex-col items-center rounded-2xl shadow-lg shadow-black backdrop-blur-xl p-6 m-auto">
-                <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
+    <main class="py-32 px-6 mb-auto bottom-0">
+        <section class="">
+            <div id="fullFrom" class="bg-slate-950/40 items-center rounded-2xl shadow-lg shadow-black backdrop-blur-xl p-6 max-w-[800px] m-auto">
+                <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full self-center m-auto">
                 <SectionTitle title="Contáctanos"/>
                 
                 <!-- Inicio del formulario como tal -->
-                <form id="form" method="post" class="flex flex-col justify-start pt-10 gap-4 space-y-4 w-full">
+                <form id="form" method="post" class="flex flex-col justify-start pt-10 gap-4 space-y-4">
                     <!--Campo del nombre -->
                     <div class="flex flex-col">
                         <p class="text-stone-300 font-bold">Nombre completo</p>
