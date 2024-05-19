@@ -1,13 +1,13 @@
 ---
 //Iconos
-import CrossIcon from "../../public/icons/CrossIcon.astro"
 import CheckIcon from "../../public/icons/CheckIcon.astro"
 
 //Componentes
 import SectionTitle from "../components/SectionTitle.astro"
-
-import { getServices } from "../api/services"
 import Layout from "../layouts/Layout.astro"
+
+//Importando la función para obtner los servicios desde la API
+import { getServices } from "../api/services"
 
 
 //Este array almacena los servicios a renderizar en el html
@@ -27,7 +27,7 @@ const loadServices = async () => {
 await loadServices()
 ---
 <Layout> 
-    <main class="block m-auto pt-24 max-w-[700px]">
+    <main class="block m-auto pt-24 px-6 max-w-[700px]">
         <section>
             <div id="fullFrom" class="bg-slate-950/40 flex flex-col items-center rounded-2xl shadow-lg shadow-black backdrop-blur-xl p-6 m-auto">
                 <img src="/logo.jpeg" alt="Logo de Energy and Water" class="size-32 mb-5 object-fill rounded-full">
@@ -70,8 +70,8 @@ await loadServices()
             </div>
         </section>
 
-        <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-1/2 -translate-y-96 bg-slate-950 shadow-lg shadow-black rounded-xl mx-4 content-center p-4"> 
-            <div class="flex flex-col items-center py-4">
+        <div id="formSubmittedPopUp" class="transition fixed scale-0 duration-300 translate-x-1/2 -translate-y-96 bg-slate-950 shadow-lg shadow-black rounded-xl m-auto"> 
+            <div class="flex flex-col items-center p-4">
                 <h2 class="text-lg text-white font-bold">Mensaje enviado satisfactoriamente</h2>
                 <CheckIcon class="text-green-700 size-11"/>
             </div>
